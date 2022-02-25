@@ -1,0 +1,10 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+   <g>
+      <title>Round Add Icon</title>
+      <g id="round-add-icon-svg">
+         <path id="svg_1" d="m199,338.5c-76.51934,0 -138.5,-61.98066 -138.5,-138.5c0,-76.51934 61.98066,-138.5 138.5,-138.5c76.51934,0 138.5,61.98066 138.5,138.5c0,76.51934 -61.98066,138.5 -138.5,138.5z" opacity="undefined" stroke="#000" fill="#000000" />
+         <rect rx="12" stroke-width="0" id="svg_5" height="200" width="30" y="100" x="185" stroke="#000" fill="#ffffff" />
+         <rect transform="rotate(90 200 200)" rx="12" stroke-width="0" id="svg_3" height="200" width="30" y="100" x="185" stroke="#000" fill="#ffffff" />
+      </g>
+   </g>
+</svg>
