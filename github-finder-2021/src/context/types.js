@@ -1,0 +1,10 @@
+export const ACTION_CLEAR_USERS = 'CLEAR_USERS'
+export const ACTION_GET_USER = 'GET_USER'
+export const ACTION_SEARCH_USERS = 'SEARCH_USERS'
+
+export const ACTION_GET_REPOS = 'GET_REPOS'
+
+export const ACTION_SET_LOADING = 'SET_LOADING'
+
+export const ACTION_SET_ALERT = 'SET_ALERT'
+export const ACTION_REMOVE_ALERT = 'REMOVE_ALERT'
