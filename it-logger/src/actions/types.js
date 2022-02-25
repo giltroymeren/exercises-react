@@ -1,0 +1,17 @@
+export const ACTION_ADD_LOG = 'ADD_LOG';
+export const ACTION_CLEAR_LOGS = 'CLEAR_LOGS';
+export const ACTION_DELETE_LOG = 'DELETE_LOG';
+export const ACTION_GET_LOGS = 'GET_LOGS';
+export const ACTION_SEARCH_LOGS = 'SEARCH_LOGS';
+export const ACTION_SET_LOGS_ERROR = 'SET_LOGS_ERROR';
+export const ACTION_UPDATE_LOG = 'UPDATE_LOG';
+
+export const ACTION_ADD_TECH = 'ADD_TECH';
+export const ACTION_DELETE_TECH = 'DELETE_TECH';
+export const ACTION_GET_TECHS = 'GET_TECHS';
+export const ACTION_SET_TECHS_ERROR = 'SET_TECHS_ERROR';
+
+export const ACTION_CLEAR_CURRENT = 'CLEAR_CURRENT';
+export const ACTION_SET_CURRENT = 'SET_CURRENT';
+
+export const ACTION_SET_LOADING = 'SET_LOADING';

@@ -1,0 +1,73 @@
+{
+  "logs": [
+    {
+      "id": 1,
+      "message": "Fixed firmware for WS-111",
+      "attention": false,
+      "tech": "Seulrae Hwang",
+      "date": "2021-12-28T17:28:39.186Z"
+    },
+    {
+      "message": "Uninstalled scanner firmware from printer 21A",
+      "attention": true,
+      "tech": "Suelrae Hwang",
+      "date": "2021-12-28T17:04:30.813Z",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "message": "Replaced the pink scanners!",
+      "attention": false,
+      "tech": "Hoshi Yamagata",
+      "date": "2021-12-28T17:28:48.937Z"
+    },
+    {
+      "message": "TEST 2728282",
+      "attention": true,
+      "tech": "Candice Rice",
+      "date": "2021-12-28T17:29:17.716Z",
+      "id": 5
+    },
+    {
+      "message": "TEST 22929",
+      "attention": false,
+      "tech": "Fany Thatchapon",
+      "date": "2021-12-28T17:29:36.547Z",
+      "id": 6
+    },
+    {
+      "message": "ADD 020202",
+      "attention": true,
+      "tech": "Juyeon Umali",
+      "date": "2021-12-28T17:30:06.179Z",
+      "id": 7
+    }
+  ],
+  "techs": [
+    {
+      "firstName": "Juyeon",
+      "lastName": "Umali",
+      "id": 1
+    },
+    {
+      "firstName": "Fany",
+      "lastName": "Thatchapon",
+      "id": 2
+    },
+    {
+      "firstName": "Marikit",
+      "lastName": "Bayani",
+      "id": 5
+    },
+    {
+      "firstName": "Seulrae",
+      "lastName": "Hwang",
+      "id": 6
+    },
+    {
+      "firstName": "Candice",
+      "lastName": "Rice",
+      "id": 7
+    }
+  ]
+}
