@@ -1,0 +1,40 @@
+:root {
+  --margin-level: 16px;
+  --color-light: #ede9ea;
+  --color-white: #f9f9f9;
+  --color-dark: #231f34;
+  --color-grey: #a1a1a1;
+}
+
+div[class*=' level-'] {
+  margin-left: var(--margin-level);
+  border-left: 1px solid var(--color-grey)
+}
+
+.row.level-0 {
+  margin-left: 0px;
+  border-left: 0px;
+}
+
+.row {
+  padding: 8px 0px;
+}
+
+.row label {
+  cursor: pointer;
+  margin: 1rem 8px;
+}
+
+.row label span {
+  padding: 4px 8px;
+}
+
+.row label input:hover+span {
+  background-color: var(--color-light);
+}
+
+.row label input:checked+span {
+  background: var(--color-grey);
+  color: var(--color-dark);
+  font-weight: 600;
+}
