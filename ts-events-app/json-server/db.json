@@ -1,0 +1,34 @@
+{
+  "events": [
+    {
+      "id": 111,
+      "title": "Shop for new plants",
+      "dateStart": "2022-01-26T00:09:09.147Z",
+      "dateEnd": "2022-01-26T00:12:09.147Z"
+    },
+    {
+      "id": 222,
+      "title": "Clean the front porch",
+      "dateStart": "2022-02-12T00:08:00.147Z",
+      "dateEnd": "2022-02-12T00:09:15.147Z"
+    },
+    {
+      "id": 333,
+      "title": "Jog 5km",
+      "dateStart": "2022-02-26T00:11:49.147Z",
+      "dateEnd": "2022-02-26T00:12:49.147Z"
+    },
+    {
+      "id": 331,
+      "title": "Water plants in front porch",
+      "dateStart": "2022-02-26T00:13:30.147Z",
+      "dateEnd": "2022-02-26T00:14:00.147Z"
+    },
+    {
+      "title": "Default",
+      "dateStart": "2022-02-26T10:59:49.078Z",
+      "dateEnd": "2022-02-26T10:59:49.078Z",
+      "id": 334
+    }
+  ]
+}
