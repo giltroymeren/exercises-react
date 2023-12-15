@@ -1,6 +1,19 @@
 const NewsSingle = ({ item }) => {
-  <div className="card-content">
-    <h2>{item.title}</h2>
+  <div className="col s4">
+    <div className="card medium">
+      <div className="card-image">
+        <img src={item.urlToImage} alt={item.title} />
+        <span className="card-title">{item.source.name}</span>
+      </div>
+      <div className="card-content">
+        <p>{item.title}</p>
+      </div>
+      <div className="card-action">
+        <a href={item.url} target="_blank" rel="noreferred noreferrer">
+          Read more
+        </a>
+      </div>
+    </div>
   </div>;
 };
 

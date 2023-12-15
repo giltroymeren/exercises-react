@@ -18,13 +18,18 @@ class News extends Component {
   }
 
   renderItems() {
-    return this.props.news.map((item) => (
+    return this.state.news.map((item) => (
       <NewsSingle key={item.id} item={item} />
     ));
   }
 
   render() {
-    return <div className="row">{this.renderItems()}</div>;
+    return (
+      <div>
+        <h1>What's going on?</h1>
+        <div className="row">{this.renderItems()}</div>
+      </div>
+    );
   }
 }
 
