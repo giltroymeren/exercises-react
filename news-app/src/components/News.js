@@ -10,7 +10,7 @@ class News extends Component {
   }
 
   componentDidMount() {
-    const url = `https://newsapi.org/v2/top-headlines?language=en&apiKey=${process.env.REACT_API_KEY}`;
+    const url = `https://newsapi.org/v2/top-headlines?language=en&apiKey=${process.env.REACT_APP_API}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => this.state({ news: data.articles }))
