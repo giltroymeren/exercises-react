@@ -1,5 +1,5 @@
-const NewsSingle = ({ item }) => {
-  <div className="col s4">
+const NewsSingle = ({ item }) => (
+  <div className="col s4" key={item.title}>
     <div className="card medium">
       <div className="card-image">
         <img src={item.urlToImage} alt={item.title} />
@@ -14,7 +14,7 @@ const NewsSingle = ({ item }) => {
         </a>
       </div>
     </div>
-  </div>;
-};
+  </div>
+);
 
 export default NewsSingle;
