@@ -5,14 +5,17 @@ import SideNews from "./SideNews";
 const App = () => {
   const NEWS_SOURCES = {
     headlines: {
+      name: "headline",
       type: "top-headlines",
       query: "source=aljazeera",
     },
     lifestyle: {
+      name: "lifestyle",
       type: "everything",
       query: "domains=wsj.com",
     },
     technology: {
+      name: "technology",
       type: "everything",
       query: "domains=techcrunch.com",
     },
