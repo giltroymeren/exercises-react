@@ -26,6 +26,10 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.less$/i,
+        use: ["style-loader", "css-loader", "less-loader"],
+      },
     ],
   },
   resolve: {
