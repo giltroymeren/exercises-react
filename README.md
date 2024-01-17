@@ -14,7 +14,9 @@ TBA
 
 ### Running the app
 
-TBA
+#### `npm start`
+
+#### `npm run build`
 
 ### Testing the app
 
