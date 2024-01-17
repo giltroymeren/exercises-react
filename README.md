@@ -20,4 +20,4 @@ TBA
 
 ### Testing the app
 
-TBA
+#### `npm test`
