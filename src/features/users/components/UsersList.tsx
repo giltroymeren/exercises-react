@@ -5,6 +5,7 @@ import { User } from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
 import { getAllUsers } from "../slice/userSlice";
+import Spinner from "../../../components/Elements/Spinner/Spinner";
 
 const UsersList = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -17,7 +18,7 @@ const UsersList = () => {
   }, [users]);
 
   if (loading) {
-    return <h3>Loading...</h3>;
+    return <Spinner />;
   }
 
   const columns: TableProps<User>["columns"] = [

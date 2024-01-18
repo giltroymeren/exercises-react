@@ -12,6 +12,21 @@ code {
     monospace;
 }
 
+// TODO: move to their own files
+// src/component/Layout/MainLayout.less
 .brand {
   color: #ffffff;
+}
+
+// src/component/Elements/Spinner/Spinner.less
+.spinner-container {
+  display: flex;
+  margin: 48px;
+  justify-content: center;
+
+  & > span {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    color: #4096ff;
+  }
 }
