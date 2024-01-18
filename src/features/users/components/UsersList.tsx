@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Button, Space, Table } from "antd";
-import { useUsers } from "../api/getUsers";
 import { TableProps } from "antd/es/table";
 import { User } from "../types";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,26 +27,32 @@ const UsersList = () => {
       key: "name",
     },
     {
-      title: "Username",
-      dataIndex: "username",
-      key: "username",
-      render: (_, { username }) => <code>{username}</code>,
-    },
-    {
       title: "Email",
       dataIndex: "email",
       key: "email",
       render: (_, { email }) => <code>{email}</code>,
     },
     {
+      title: "Phone",
+      dataIndex: "phone",
+      key: "phone",
+    },
+    {
+      title: "Company",
+      dataIndex: "company",
+      key: "company",
+      render: (_, { company }) => company.name,
+    },
+    {
       title: "Actions",
       key: "actions",
       render: (_, { id }) => (
         <div key={id}>
-          <Button type="primary">Edit</Button>
-          <Button type="primary" danger>
-            Delete
-          </Button>
+          <Space size="middle">
+            <Button type="primary">Details</Button>
+            <Button>Edit</Button>
+            <Button danger>Delete</Button>
+          </Space>
         </div>
       ),
     },
