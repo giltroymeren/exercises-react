@@ -1,17 +1,24 @@
 import * as React from "react";
 import { Button, Space, Table } from "antd";
-import { User, useUsers } from "../api/getUsers";
+import { useUsers } from "../api/getUsers";
 import { TableProps } from "antd/es/table";
+import { User } from "../types";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../store";
+import { getAllUsers } from "../slice/userSlice";
 
 const UsersList = () => {
-  const usersQuery = useUsers();
+  const dispatch = useDispatch<AppDispatch>();
+  const { users, loading } = useSelector((state: RootState) => state.users);
 
-  if (usersQuery.isLoading) {
+  React.useEffect(() => {
+    if (!users.length) {
+      dispatch(getAllUsers());
+    }
+  }, [users]);
+
+  if (loading) {
     return <h3>Loading...</h3>;
-  }
-
-  if (!usersQuery.data) {
-    return null;
   }
 
   const columns: TableProps<User>["columns"] = [
@@ -47,11 +54,7 @@ const UsersList = () => {
   ];
 
   return (
-    <Table<User>
-      dataSource={usersQuery.data}
-      columns={columns}
-      rowKey={({ id }) => id}
-    />
+    <Table<User> dataSource={users} columns={columns} rowKey={({ id }) => id} />
   );
 };
 
