@@ -1,6 +1,6 @@
 import * as React from "react";
 import Layout, { Content, Footer } from "antd/es/layout/layout";
-import PostsList from "./features/posts/components/PostsList";
+import UsersList from "./features/users/components/UsersList";
 
 const App = () => {
   return (
@@ -8,7 +8,7 @@ const App = () => {
       <h1>Customer Phone Book App</h1>
       <Layout>
         <Content>
-          <PostsList />
+          <UsersList />
         </Content>
       </Layout>
       <Footer>
