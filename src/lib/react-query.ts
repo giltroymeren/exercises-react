@@ -1,10 +1,9 @@
-import { DefaultOptions, QueryClient } from "react-query";
+import { DefaultOptions, QueryClient } from "@tanstack/query-core";
 
 const defaultOptions: DefaultOptions = {
   queries: {
     refetchOnWindowFocus: false,
     retry: false,
-    useErrorBoundary: true,
   },
 };
 
