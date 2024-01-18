@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button, Space, Table } from "antd";
 import { User, useUsers } from "../api/getUsers";
-import { ColumnGroupType, TableProps } from "antd/es/table";
+import { TableProps } from "antd/es/table";
 
 const UsersList = () => {
   const usersQuery = useUsers();
