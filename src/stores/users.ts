@@ -4,6 +4,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 type State = {
   users: User[];
+  fetched: boolean;
 };
 
 type Actions = {
@@ -16,13 +17,14 @@ type Actions = {
 
 const initialState: State = {
   users: [],
+  fetched: false,
 };
 
 export const useUsersStore = create<State & Actions>()(
   persist(
     (set, get) => ({
       ...initialState,
-      setAll: (users) => set({ users }),
+      setAll: (users) => set({ users, fetched: true }),
       getById: (id) => get().users.find((user) => user.id === id) || undefined,
       add: (user) =>
         set((state) => ({

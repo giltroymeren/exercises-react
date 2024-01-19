@@ -11,15 +11,15 @@ import SimpleModal from "../../../components/Elements/SimpleModal";
 const UsersList = () => {
   const navigate = useNavigate();
 
-  const { users, setAll, remove } = useUsersStore();
+  const { users, fetched, setAll, remove } = useUsersStore();
 
   const usersQuery = useUsers();
 
   React.useEffect(() => {
-    if (usersQuery.data) {
+    if (usersQuery.data && !fetched) {
       setAll(usersQuery.data);
     }
-  }, [usersQuery.data, setAll]);
+  }, [usersQuery.data]);
 
   if (usersQuery.isLoading) {
     return <Spinner />;
