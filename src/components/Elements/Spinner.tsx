@@ -1,5 +1,5 @@
-import { Spin } from "antd";
 import * as React from "react";
+import { Spin } from "antd";
 
 const Spinner = () => (
   <div data-test="spinner">

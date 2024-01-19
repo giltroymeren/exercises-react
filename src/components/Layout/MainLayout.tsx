@@ -1,6 +1,6 @@
+import * as React from "react";
 import { Layout } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
-import React from "react";
 
 type Props = {
   children: React.ReactNode;
