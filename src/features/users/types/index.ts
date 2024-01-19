@@ -1,6 +1,6 @@
 type AddressCoordinates = {
-  lat: string;
-  lng: string;
+  lat: number;
+  lng: number;
 };
 
 type Address = {
