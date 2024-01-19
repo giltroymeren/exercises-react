@@ -4,7 +4,6 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 type State = {
   users: User[];
-  loading: boolean;
 };
 
 type Actions = {
@@ -17,7 +16,6 @@ type Actions = {
 
 const initialState: State = {
   users: [],
-  loading: false,
 };
 
 export const useUsersStore = create<State & Actions>()(

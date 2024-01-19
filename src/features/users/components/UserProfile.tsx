@@ -18,12 +18,8 @@ const UserProfile = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const { getById, remove, loading } = useUsersStore();
+  const { getById, remove } = useUsersStore();
   const user = getById(Number(id));
-
-  if (loading) {
-    return <Spinner />;
-  }
 
   if (!user) {
     return <h3>Error!</h3>;
@@ -92,7 +88,7 @@ const UserProfile = () => {
         >
           Delete this user
         </Button>
-        <Button href="/">See all users</Button>
+        <Button onClick={() => navigate("/")}>See all users</Button>
       </div>
     </>
   );
