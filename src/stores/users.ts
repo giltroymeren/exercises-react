@@ -9,9 +9,9 @@ type State = {
 
 type Actions = {
   setAll: (users: User[]) => void;
-  getAll: (state: State) => User[];
+  getById: (id: number) => User | undefined;
   add: (user: User) => void;
-  // TODO getById, add, edit, delete
+  // TODO edit, delete
 };
 
 const initialState: State = {
@@ -19,15 +19,12 @@ const initialState: State = {
   loading: false,
 };
 
-export const useUsersStore = create<State & Actions>((set) => ({
+export const useUsersStore = create<State & Actions>((set, get) => ({
   ...initialState,
   setAll: (users) => set({ users }),
-  getAll: (state: State) => state.users,
+  getById: (id) => get().users.find((user) => user.id === id) || undefined,
   add: (user) =>
     set((state) => ({
       users: [...state.users, user],
     })),
-  reset: () => {
-    set(initialState);
-  },
 }));
