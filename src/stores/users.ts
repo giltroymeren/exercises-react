@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { User } from "../features/users/types";
-import { useUsers } from "../features/users/api/getUsers";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 type State = {
   users: User[];
@@ -20,20 +20,30 @@ const initialState: State = {
   loading: false,
 };
 
-export const useUsersStore = create<State & Actions>((set, get) => ({
-  ...initialState,
-  setAll: (users) => set({ users }),
-  getById: (id) => get().users.find((user) => user.id === id) || undefined,
-  add: (user) =>
-    set((state) => ({
-      users: [...state.users, user],
-    })),
-  delete: (id) =>
-    set((state) => ({ users: state.users.filter((user) => user.id !== id) })),
-  edit: (newUser) =>
-    set((state) => ({
-      users: state.users.map((user) =>
-        user.id === newUser.id ? { ...user, newUser } : user
-      ),
-    })),
-}));
+export const useUsersStore = create<State & Actions>()(
+  persist(
+    (set, get) => ({
+      ...initialState,
+      setAll: (users) => set({ users }),
+      getById: (id) => get().users.find((user) => user.id === id) || undefined,
+      add: (user) =>
+        set((state) => ({
+          users: [...state.users, user],
+        })),
+      delete: (id) =>
+        set((state) => ({
+          users: state.users.filter((user) => user.id !== id),
+        })),
+      edit: (newUser) =>
+        set((state) => ({
+          users: state.users.map((user) =>
+            user.id === newUser.id ? { ...user, newUser } : user
+          ),
+        })),
+    }),
+    {
+      name: "users-storage",
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);
