@@ -1,9 +1,11 @@
 import * as React from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useUsersStore } from "../../../stores/users";
 import Spinner from "../../../components/Elements/Spinner";
 import { DescriptionsProps, Descriptions, Button } from "antd";
 import { User } from "../types";
+import NiceModal from "@ebay/nice-modal-react";
+import SimpleModal from "../../../components/Elements/SimpleModal";
 
 const getAndFormatAddress = (user: User) => (
   <>
@@ -13,8 +15,10 @@ const getAndFormatAddress = (user: User) => (
 );
 
 const UserProfile = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
-  const { getById, loading } = useUsersStore();
+  const { getById, remove, loading } = useUsersStore();
   const user = getById(Number(id));
 
   if (loading) {
@@ -65,7 +69,31 @@ const UserProfile = () => {
         data-test="container-profile"
       />
 
-      <Button href="/">See all users</Button>
+      <div>
+        <Button
+          danger
+          data-test="button-delete"
+          onClick={() =>
+            NiceModal.show(SimpleModal, {
+              title: "Delete User",
+              handleSubmit: () => {
+                remove(user.id);
+                navigate("/");
+              },
+              submitText: "Delete",
+              submitProps: { type: "primary", danger: true },
+              children: (
+                <>
+                  Do you want to delete user "<strong>{user.name}</strong>"?
+                </>
+              ),
+            })
+          }
+        >
+          Delete this user
+        </Button>
+        <Button href="/">See all users</Button>
+      </div>
     </>
   );
 };
