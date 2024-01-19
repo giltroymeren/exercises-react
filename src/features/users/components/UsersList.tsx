@@ -3,15 +3,28 @@ import { Button, Space, Table } from "antd";
 import { useUsers } from "../api/getUsers";
 import { TableProps } from "antd/es/table";
 import { User } from "../types";
+import { useUsersStore } from "../../../stores/users";
 
 const UsersList = () => {
+  const { users, setAll } = useUsersStore();
+
   const usersQuery = useUsers();
+
+  React.useEffect(() => {
+    if (usersQuery.data) {
+      setAll(usersQuery.data);
+    }
+  }, [usersQuery.data, setAll]);
 
   if (usersQuery.isLoading) {
     return <h3>Loading...</h3>;
   }
 
-  if (!usersQuery.data) {
+  if (usersQuery.isError) {
+    return <h3>Error!</h3>;
+  }
+
+  if (!users) {
     return null;
   }
 
@@ -58,7 +71,7 @@ const UsersList = () => {
   return (
     // TODO custom noData state
     <Table<User>
-      dataSource={usersQuery.data}
+      dataSource={users}
       columns={columns}
       rowKey={({ id }) => id}
       data-test="table-users"
