@@ -8,9 +8,12 @@ test("should be able to add users", () => {
 
   expect(result.current.users.length).toBe(0);
 
+  const COUNT_USERS = 10;
   act(() => {
-    result.current.add(userGenerator());
+    for (let i = 0; i < COUNT_USERS; i++) {
+      result.current.add(userGenerator());
+    }
   });
 
-  expect(result.current.users.length).toBe(1);
+  expect(result.current.users.length).toBe(COUNT_USERS);
 });
