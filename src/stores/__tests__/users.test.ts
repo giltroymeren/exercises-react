@@ -52,4 +52,18 @@ describe("UsersStore", () => {
     });
     expect(result.current.users.length).toBe(COUNT_USERS);
   });
+
+  test("should be able to edit an existing user", () => {
+    const { result } = renderHook(() => useUsersStore());
+    const newUser = userGenerator();
+    act(() => {
+      result.current.add(newUser);
+    });
+    expect(result.current.getById(newUser.id)?.name).toBe(newUser.name);
+
+    const TEST_NAME = "Test Name";
+    newUser.name = TEST_NAME;
+    act(() => result.current.edit(newUser));
+    expect(result.current.getById(newUser.id)?.name).toBe(TEST_NAME);
+  });
 });

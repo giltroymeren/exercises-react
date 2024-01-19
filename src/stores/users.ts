@@ -12,7 +12,7 @@ type Actions = {
   getById: (id: number) => User | undefined;
   add: (user: User) => void;
   delete: (id: number) => void;
-  // TODO edit
+  edit: (newUser: User) => void;
 };
 
 const initialState: State = {
@@ -30,4 +30,10 @@ export const useUsersStore = create<State & Actions>((set, get) => ({
     })),
   delete: (id) =>
     set((state) => ({ users: state.users.filter((user) => user.id !== id) })),
+  edit: (newUser) =>
+    set((state) => ({
+      users: state.users.map((user) =>
+        user.id === newUser.id ? { ...user, newUser } : user
+      ),
+    })),
 }));
