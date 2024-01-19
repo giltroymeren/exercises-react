@@ -1,16 +1,17 @@
 import * as React from "react";
-import { Button, Table } from "antd";
+import { Button, Modal, Table, TableProps } from "antd";
 import { useUsers } from "../api/getUsers";
-import { TableProps } from "antd/es/table";
 import { User } from "../types";
 import { useUsersStore } from "../../../stores/users";
 import Spinner from "../../../components/Elements/Spinner";
 import { useNavigate } from "react-router";
+import NiceModal from "@ebay/nice-modal-react";
+import SimpleModal from "../../../components/Elements/SimpleModal";
 
 const UsersList = () => {
   const navigate = useNavigate();
 
-  const { users, setAll } = useUsersStore();
+  const { users, setAll, remove } = useUsersStore();
 
   const usersQuery = useUsers();
 
@@ -58,7 +59,7 @@ const UsersList = () => {
     {
       title: "Actions",
       key: "actions",
-      render: (_, { id }) => (
+      render: (_, { id, name }) => (
         <div key={id}>
           <Button
             type="primary"
@@ -68,7 +69,23 @@ const UsersList = () => {
             View
           </Button>
           <Button data-test="button-edit">Edit</Button>
-          <Button danger data-test="button-delete">
+          <Button
+            danger
+            data-test="button-delete"
+            onClick={() =>
+              NiceModal.show(SimpleModal, {
+                title: "Delete User",
+                handleSubmit: () => remove(id),
+                submitText: "Delete",
+                submitProps: { type: "primary", danger: true },
+                children: (
+                  <>
+                    Do you want to delete user "<strong>{name}</strong>"?
+                  </>
+                ),
+              })
+            }
+          >
             Delete
           </Button>
         </div>

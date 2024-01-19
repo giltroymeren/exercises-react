@@ -11,7 +11,7 @@ type Actions = {
   setAll: (users: User[]) => void;
   getById: (id: number) => User | undefined;
   add: (user: User) => void;
-  delete: (id: number) => void;
+  remove: (id: number) => void;
   edit: (newUser: User) => void;
 };
 
@@ -30,7 +30,7 @@ export const useUsersStore = create<State & Actions>()(
         set((state) => ({
           users: [...state.users, user],
         })),
-      delete: (id) =>
+      remove: (id) =>
         set((state) => ({
           users: state.users.filter((user) => user.id !== id),
         })),

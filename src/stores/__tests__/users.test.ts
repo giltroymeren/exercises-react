@@ -17,7 +17,7 @@ describe("UsersStore", () => {
     });
     expect(result.current.getById(newUser.id)?.name).toBe(newUser.name);
 
-    act(() => result.current.delete(newUser.id));
+    act(() => result.current.remove(newUser.id));
     expect(result.current.getById(newUser.id)).toBe(undefined);
   });
 
