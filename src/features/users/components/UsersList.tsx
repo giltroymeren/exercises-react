@@ -4,6 +4,7 @@ import { useUsers } from "../api/getUsers";
 import { TableProps } from "antd/es/table";
 import { User } from "../types";
 import { useUsersStore } from "../../../stores/users";
+import Spinner from "../../../components/Elements/Spinner";
 
 const UsersList = () => {
   const { users, setAll } = useUsersStore();
@@ -17,7 +18,7 @@ const UsersList = () => {
   }, [usersQuery.data, setAll]);
 
   if (usersQuery.isLoading) {
-    return <h3>Loading...</h3>;
+    return <Spinner />;
   }
 
   if (usersQuery.isError) {
