@@ -8,15 +8,17 @@ const initialStoreState = useUsersStore.getState();
 describe("UsersStore", () => {
   afterEach(() => act(() => useUsersStore.setState(initialStoreState)));
 
-  test("should be able to add a user", () => {
+  test("should be able to add and delete a user", () => {
     const { result } = renderHook(() => useUsersStore());
-
     const newUser = userGenerator();
+
     act(() => {
       result.current.add(newUser);
     });
-
     expect(result.current.getById(newUser.id)?.name).toBe(newUser.name);
+
+    act(() => result.current.delete(newUser.id));
+    expect(result.current.getById(newUser.id)).toBe(undefined);
   });
 
   test("should not find an invalid user", () => {
@@ -31,7 +33,6 @@ describe("UsersStore", () => {
     const COUNT_USERS = 10;
     const newUsers = Array.from({ length: COUNT_USERS }, () => userGenerator());
     act(() => result.current.setAll(newUsers));
-
     expect(result.current.users.length).toBe(COUNT_USERS);
     newUsers.forEach((user) => {
       const userFromStore = result.current.getById(user.id);
@@ -49,7 +50,6 @@ describe("UsersStore", () => {
         result.current.add(userGenerator());
       }
     });
-
     expect(result.current.users.length).toBe(COUNT_USERS);
   });
 });
