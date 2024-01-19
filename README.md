@@ -14,12 +14,14 @@ TBA
 
 ### Running the app
 
-#### `npm start`
+#### `npm run start:client`
 
-#### `npm run build`
+#### `npm run start:server`
+
+#### `npm run client:build`
 
 ### Testing the app
 
-#### `npm test`
+#### `npm run test`
 
-#### `npm cy:test`
+#### `npm run cy:test`

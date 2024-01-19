@@ -4,8 +4,9 @@
   "description": "A simple customer phone book app",
   "main": "client/index.tsx",
   "scripts": {
-    "start": "webpack serve ./client --mode development",
-    "build": "webpack --mode production",
+    "start:client": "webpack serve ./client --mode development",
+    "start:server": "node server/index.ts",
+    "build:client": "webpack --mode production",
     "cy:test": "cypress open",
     "test": "jest"
   },
@@ -17,6 +18,7 @@
     "@tanstack/react-query": "^5.17.15",
     "antd": "^5.13.1",
     "axios": "^1.6.5",
+    "express": "^4.18.2",
     "react-router-dom": "^6.21.3",
     "zustand": "^4.4.7"
   },

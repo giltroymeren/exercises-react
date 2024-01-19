@@ -8,5 +8,5 @@
     "strict": true,
     "esModuleInterop": true
   },
-  "include": ["src/**/*", "cypress.config.ts"]
+  "include": ["client/**/*", "cypress.config.ts"]
 }
