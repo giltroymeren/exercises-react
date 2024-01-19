@@ -8,6 +8,7 @@ import { queryClient } from "./lib/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "./features/not-found/NotFound";
 import Spinner from "./components/Elements/Spinner";
+import UserProfile from "./features/users/components/UserProfile";
 
 createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -16,6 +17,8 @@ createRoot(document.getElementById("root") as HTMLElement).render(
         <QueryClientProvider client={queryClient}>
           <Routes>
             <Route path="/" element={<App />} />
+            <Route path="/user/:id" element={<UserProfile />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </QueryClientProvider>

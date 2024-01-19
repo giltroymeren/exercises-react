@@ -5,8 +5,11 @@ import { TableProps } from "antd/es/table";
 import { User } from "../types";
 import { useUsersStore } from "../../../stores/users";
 import Spinner from "../../../components/Elements/Spinner";
+import { useNavigate } from "react-router";
 
 const UsersList = () => {
+  const navigate = useNavigate();
+
   const { users, setAll } = useUsersStore();
 
   const usersQuery = useUsers();
@@ -57,7 +60,11 @@ const UsersList = () => {
       key: "actions",
       render: (_, { id }) => (
         <div key={id}>
-          <Button type="primary" data-test="button-view">
+          <Button
+            type="primary"
+            data-test="button-view"
+            onClick={() => navigate(`/user/${id}`)}
+          >
             View
           </Button>
           <Button data-test="button-edit">Edit</Button>
