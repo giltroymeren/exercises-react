@@ -21,3 +21,5 @@ TBA
 ### Testing the app
 
 #### `npm test`
+
+#### `npm cy:test`
