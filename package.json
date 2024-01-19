@@ -2,9 +2,9 @@
   "name": "customer-app",
   "version": "1.0.0",
   "description": "A simple customer phone book app",
-  "main": "src/index.tsx",
+  "main": "client/index.tsx",
   "scripts": {
-    "start": "webpack serve --mode development",
+    "start": "webpack serve ./client --mode development",
     "build": "webpack --mode production",
     "cy:test": "cypress open",
     "test": "jest"
