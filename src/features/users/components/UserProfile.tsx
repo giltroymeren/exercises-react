@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useNavigate, useParams } from "react-router";
 import { useUsersStore } from "../../../stores/users";
-import Spinner from "../../../components/Elements/Spinner";
 import { DescriptionsProps, Descriptions, Button } from "antd";
 import { User } from "../types";
 import NiceModal from "@ebay/nice-modal-react";
 import SimpleModal from "../../../components/Elements/SimpleModal";
+
 
 const getAndFormatAddress = (user: User) => (
   <>

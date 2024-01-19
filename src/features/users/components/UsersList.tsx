@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, Modal, Table, TableProps } from "antd";
+import { Button, Table, TableProps } from "antd";
 import { useUsers } from "../api/getUsers";
 import { User } from "../types";
 import { useUsersStore } from "../../../stores/users";
