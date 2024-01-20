@@ -5,10 +5,9 @@ import { NewUser } from "../../features/users";
 
 type Props = {
   handleSubmit: (values: any) => void;
-  onCancel: () => void;
 };
 
-const UserForm = ({ handleSubmit, onCancel }: Props) => {
+const UserForm = ({ handleSubmit }: Props) => {
   const [form] = Form.useForm();
   const formValues = Form.useWatch<NewUser>([], form);
   const [isFormValid, setIsFormValid] = React.useState(false);
@@ -69,14 +68,6 @@ const UserForm = ({ handleSubmit, onCancel }: Props) => {
         rules={[{ required: true }]}
       >
         <Input name="company" />
-      </Form.Item>
-      <Form.Item>
-        <Space>
-          <Button onClick={onCancel}>Cancel</Button>
-          <Button type="primary" htmlType="submit" disabled={!isFormValid}>
-            Create User
-          </Button>
-        </Space>
       </Form.Item>
     </Form>
   );

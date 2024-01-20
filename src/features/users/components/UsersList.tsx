@@ -21,22 +21,13 @@ import SimpleModal from "../../../components/Elements/SimpleModal";
 import { PlusOutlined } from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
 import UserForm from "../../../components/Forms/UserForm";
+import FormDrawer from "../../../components/Forms/FormDrawer";
 
 const UsersList = () => {
   const navigate = useNavigate();
 
   const { users, fetched, setAll, remove, create } = useUsersStore();
   const usersQuery = useUsers();
-
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-  const openDrawer = React.useCallback(
-    () => setIsDrawerOpen(true),
-    [isDrawerOpen]
-  );
-  const closeDrawer = React.useCallback(
-    () => setIsDrawerOpen(false),
-    [isDrawerOpen]
-  );
 
   React.useEffect(() => {
     if (usersQuery.data && !fetched) {
@@ -117,11 +108,9 @@ const UsersList = () => {
   ];
 
   const handleSubmit = (values: NewUser) => {
-    console.info("Creating user:", values);
     create({
       ...values,
     });
-    closeDrawer();
   };
 
   return (
@@ -129,29 +118,25 @@ const UsersList = () => {
     <>
       <Row>
         <Col span={24}>
-          <Button
-            type="primary"
-            icon={<PlusOutlined />}
-            data-test="button-create"
-            onClick={() => {
-              openDrawer();
-              navigate("/user/create");
-            }}
-          >
-            Add User
-          </Button>
-
-          <Drawer
+          <FormDrawer
             title="Create User"
-            width="50%"
-            open={isDrawerOpen}
-            onClose={() => {
-              closeDrawer();
-              navigate("/");
-            }}
+            triggerButton={
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                data-test="button-create"
+              >
+                Add User
+              </Button>
+            }
+            submitButton={
+              <Button type="primary" htmlType="submit">
+                Create User
+              </Button>
+            }
           >
-            <UserForm handleSubmit={handleSubmit} onCancel={closeDrawer} />
-          </Drawer>
+            <UserForm handleSubmit={handleSubmit} />
+          </FormDrawer>
         </Col>
       </Row>
       <Row>
