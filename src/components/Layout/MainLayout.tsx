@@ -1,15 +1,28 @@
 import * as React from "react";
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
+import { PlusOutlined } from "@ant-design/icons";
 
-const HeaderSection = () => (
-  <div data-test="section-header">
-    <Header>
-      <span>Customer Phone Book App</span>
-    </Header>
-  </div>
-);
+const HeaderSection = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div data-test="section-header">
+      <Header>
+        <span>Customer Phone Book App</span>
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          data-test="button-create"
+          onClick={() => navigate("/user/create")}
+        >
+          Add User
+        </Button>
+      </Header>
+    </div>
+  );
+};
 
 const FooterSection = () => (
   <Footer data-test="section-footer">

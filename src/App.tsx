@@ -18,6 +18,8 @@ const App = () => {
             <Routes>
               <Route path="/" element={<MainLayout />}>
                 <Route index path="/" element={<UsersList />} />
+                {/** TODO change element */}
+                <Route path="/user/create" element={<UsersList />} />
                 <Route path="/user/:id" element={<UserProfile />} />
               </Route>
               <Route path="*" element={<NotFound />} />

@@ -13,7 +13,7 @@ describe("UsersStore", () => {
     const newUser = userGenerator();
 
     act(() => {
-      result.current.add(newUser);
+      result.current.create(newUser);
     });
     expect(result.current.getById(newUser.id)?.name).toBe(newUser.name);
 
@@ -47,7 +47,7 @@ describe("UsersStore", () => {
     const COUNT_USERS = 10;
     act(() => {
       for (let i = 0; i < COUNT_USERS; i++) {
-        result.current.add(userGenerator());
+        result.current.create(userGenerator());
       }
     });
     expect(result.current.users.length).toBe(COUNT_USERS);
@@ -57,7 +57,7 @@ describe("UsersStore", () => {
     const { result } = renderHook(() => useUsersStore());
     const newUser = userGenerator();
     act(() => {
-      result.current.add(newUser);
+      result.current.create(newUser);
     });
     expect(result.current.getById(newUser.id)?.name).toBe(newUser.name);
 
