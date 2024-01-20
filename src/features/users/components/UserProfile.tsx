@@ -4,6 +4,7 @@ import { useUsersStore } from "../../../stores/users";
 import { DescriptionsProps, Descriptions, Button, Space } from "antd";
 import UserUpdate from "./UserUpdate";
 import UserDelete from "./UserDelete";
+import NotFound from "../../not-found/NotFound";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const UserProfile = () => {
   const user = getById(Number(id));
 
   if (!user) {
-    return <h3>Error!</h3>;
+    return <NotFound />;
   }
 
   const descriptions: DescriptionsProps["items"] = [

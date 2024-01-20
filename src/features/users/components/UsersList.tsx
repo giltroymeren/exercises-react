@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 import UserCreate from "./UserCreate";
 import UserUpdate from "./UserUpdate";
 import UserDelete from "./UserDelete";
+import NotFound from "../../not-found/NotFound";
 
 const UsersList = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const UsersList = () => {
   }
 
   if (usersQuery.isError) {
-    return <h3>Error!</h3>;
+    return <NotFound />;
   }
 
   if (!users) {

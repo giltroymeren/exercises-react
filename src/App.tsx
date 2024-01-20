@@ -19,8 +19,8 @@ const App = () => {
               <Route path="/" element={<MainLayout />}>
                 <Route index path="/" element={<UsersList />} />
                 <Route path="/user/:id" element={<UserProfile />} />
+                <Route path="*" element={<NotFound />} />
               </Route>
-              <Route path="*" element={<NotFound />} />
             </Routes>
           </NiceModal.Provider>
         </QueryClientProvider>
