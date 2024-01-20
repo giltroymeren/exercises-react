@@ -27,9 +27,8 @@ export const useUsersStore = create<State & Actions>()(
       setAll: (users) => set({ users, fetched: true }),
       getById: (id) => get().users.find((user) => user.id === id) || undefined,
       create: (user) =>
-        // TODO call query
         set((state) => ({
-          users: [...state.users, { ...user, id: 1 }],
+          users: [...state.users, { ...user, id: Date.now() }],
         })),
       remove: (id) =>
         set((state) => ({
