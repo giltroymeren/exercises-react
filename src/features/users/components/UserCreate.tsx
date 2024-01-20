@@ -1,6 +1,6 @@
 import * as React from "react";
 import FormDrawer from "../../../components/Forms/FormDrawer";
-import { Button } from "antd";
+import { Button, Form } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import UserForm from "../../../components/Forms/UserForm";
 import { NewUser } from "../types";
@@ -8,10 +8,11 @@ import { useUsersStore } from "../../../stores/users";
 
 const UserCreate = () => {
   const { create } = useUsersStore();
+  const [form] = Form.useForm();
 
-  const handleSubmit = (values: NewUser) => {
-    create({
-      ...values,
+  const handleSubmit = () => {
+    form.validateFields({ validateOnly: true }).then((values: NewUser) => {
+      create(values);
     });
   };
 
@@ -32,8 +33,9 @@ const UserCreate = () => {
           Create User
         </Button>
       }
+      submitHandler={handleSubmit}
     >
-      <UserForm handleSubmit={handleSubmit} />
+      <UserForm formInstance={form} />
     </FormDrawer>
   );
 };

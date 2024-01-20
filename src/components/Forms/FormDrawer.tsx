@@ -5,14 +5,15 @@ type Props = {
   title: string;
   triggerButton: React.ReactElement;
   submitButton: React.ReactElement;
+  submitHandler: () => void;
   children: React.ReactNode;
 };
 
 const FormDrawer = ({
   title,
   triggerButton,
-
   submitButton,
+  submitHandler,
   children,
 }: Props) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -30,7 +31,12 @@ const FormDrawer = ({
         footer={
           <Space>
             <Button onClick={close}>Cancel</Button>
-            {submitButton}
+            {React.cloneElement(submitButton, {
+              onClick: () => {
+                submitHandler();
+                close();
+              },
+            })}
           </Space>
         }
         data-test="drawer"

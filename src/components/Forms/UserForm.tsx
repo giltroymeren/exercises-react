@@ -1,35 +1,19 @@
 import * as React from "react";
-import { Button, Form, Input, Space } from "antd";
+import { Form, FormInstance, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import { NewUser } from "../../features/users";
 
 type Props = {
-  handleSubmit: (values: any) => void;
+  formInstance: FormInstance<any>;
 };
 
-const UserForm = ({ handleSubmit }: Props) => {
-  const [form] = Form.useForm();
-  const formValues = Form.useWatch<NewUser>([], form);
-  const [isFormValid, setIsFormValid] = React.useState(false);
-
-  React.useEffect(() => {
-    form.validateFields({ validateOnly: true }).then(
-      () => {
-        setIsFormValid(true);
-      },
-      () => {
-        setIsFormValid(false);
-      }
-    );
-  }, [formValues]);
-
+const UserForm = ({ formInstance }: Props) => {
   return (
     <Form
+      form={formInstance}
       layout="vertical"
       autoComplete="off"
       data-test="form-create"
       scrollToFirstError
-      onFinish={handleSubmit}
       name="validateOnly"
     >
       <Form.Item label="Name" name="name" rules={[{ required: true }]}>
