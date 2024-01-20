@@ -1,11 +1,18 @@
 import * as React from "react";
-import { Layout } from "antd";
+import { Layout, Space } from "antd";
 import { Outlet } from "react-router";
+import { TeamOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const HeaderSection = () => (
-  <div data-test="section-header">
+  <div data-test="section-header" className="section-header">
     <Layout.Header>
-      <span>Customer Phone Book App</span>
+      <Space>
+        <TeamOutlined />
+        <Link to={"/"}>
+          <span>MyCustomers</span>
+        </Link>
+      </Space>
     </Layout.Header>
   </div>
 );
@@ -26,7 +33,7 @@ const FooterSection = () => (
 const MainLayout = () => (
   <Layout>
     <HeaderSection />
-    <Layout data-test="section-body">
+    <Layout data-test="section-body" className="section-body">
       <Layout.Content>
         <Outlet />
       </Layout.Content>

@@ -13,7 +13,7 @@ import NotFound from "../../not-found/NotFound";
 const UsersList = () => {
   const navigate = useNavigate();
 
-  const { users, fetched, setAll, remove } = useUsersStore();
+  const { users, fetched, setAll } = useUsersStore();
   const usersQuery = useUsers();
 
   React.useEffect(() => {
@@ -39,6 +39,8 @@ const UsersList = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      sorter: (a, b) => a.name.localeCompare(b.name),
+      sortDirections: ["ascend", "descend"],
     },
     {
       title: "Email",
@@ -78,24 +80,24 @@ const UsersList = () => {
 
   return (
     // TODO custom noData state
-    <>
-      <Row>
-        <Col span={24}>
+    <div className="section-userlist">
+      <Row justify="space-around" align="middle">
+        <Col span={12}>
+          <h1>Available Customers</h1>
+        </Col>
+        <Col span={6} offset={6} className="container-create">
           <UserCreate />
         </Col>
       </Row>
-      <Row>
-        <Col span={24}>
-          <Table<User>
-            dataSource={users}
-            columns={columns}
-            rowKey={({ id }) => id}
-            data-test="table-users"
-            rowClassName={({ id }) => `table-users-row-${id}`}
-          />
-        </Col>
-      </Row>
-    </>
+
+      <Table<User>
+        dataSource={users}
+        columns={columns}
+        rowKey={({ id }) => id}
+        data-test="table-users"
+        rowClassName={({ id }) => `table-users-row-${id}`}
+      />
+    </div>
   );
 };
 
