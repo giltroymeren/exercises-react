@@ -1,24 +1,22 @@
 import { act, renderHook } from "@testing-library/react";
 import { useUsersStore } from "../users";
-import { User } from "../../features/users/types";
-import { userGenerator } from "../../test/data-generators";
+import { newUserGenerator, userGenerator } from "../../test/data-generators";
+import { NewUser } from "../../features/users";
 
 const initialStoreState = useUsersStore.getState();
 
 describe("UsersStore", () => {
   afterEach(() => act(() => useUsersStore.setState(initialStoreState)));
 
-  test("should be able to add and delete a user", () => {
+  test("should be able to add and delete a user", async () => {
     const { result } = renderHook(() => useUsersStore());
-    const newUser = userGenerator();
+    const newUser = newUserGenerator();
 
-    act(() => {
-      result.current.create(newUser);
-    });
-    expect(result.current.getById(newUser.id)?.name).toBe(newUser.name);
+    const userFromStore = await act(() => result.current.create(newUser));
+    expect(result.current.getById(userFromStore.id)?.name).toBe(newUser.name);
 
-    act(() => result.current.remove(newUser.id));
-    expect(result.current.getById(newUser.id)).toBe(undefined);
+    act(() => result.current.remove(userFromStore.id));
+    expect(result.current.getById(userFromStore.id)).toBe(undefined);
   });
 
   test("should not find an invalid user", () => {
@@ -53,17 +51,16 @@ describe("UsersStore", () => {
     expect(result.current.users.length).toBe(COUNT_USERS);
   });
 
-  test("should be able to edit an existing user", () => {
+  test("should be able to edit an existing user", async () => {
     const { result } = renderHook(() => useUsersStore());
-    const newUser = userGenerator();
-    act(() => {
-      result.current.create(newUser);
-    });
-    expect(result.current.getById(newUser.id)?.name).toBe(newUser.name);
+    const newUser = newUserGenerator();
+
+    const userFromStore = await act(() => result.current.create(newUser));
+    expect(result.current.getById(userFromStore.id)?.name).toBe(newUser.name);
 
     const TEST_NAME = "Test Name";
-    newUser.name = TEST_NAME;
-    act(() => result.current.edit(newUser));
-    expect(result.current.getById(newUser.id)?.name).toBe(TEST_NAME);
+    userFromStore.name = TEST_NAME;
+    act(() => result.current.edit(userFromStore));
+    expect(result.current.getById(userFromStore.id)?.name).toBe(TEST_NAME);
   });
 });

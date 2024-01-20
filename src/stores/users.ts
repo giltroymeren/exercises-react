@@ -10,7 +10,7 @@ type State = {
 type Actions = {
   setAll: (users: User[]) => void;
   getById: (id: number) => User | undefined;
-  create: (user: NewUser) => void;
+  create: (user: NewUser) => User;
   remove: (id: number) => void;
   edit: (newUser: User) => void;
 };
@@ -26,10 +26,13 @@ export const useUsersStore = create<State & Actions>()(
       ...initialState,
       setAll: (users) => set({ users, fetched: true }),
       getById: (id) => get().users.find((user) => user.id === id) || undefined,
-      create: (user) =>
+      create: (user) => {
+        const newUser = { ...user, id: Date.now() };
         set((state) => ({
-          users: [...state.users, { ...user, id: Date.now() }],
-        })),
+          users: [...state.users, newUser],
+        }));
+        return newUser;
+      },
       remove: (id) =>
         set((state) => ({
           users: state.users.filter((user) => user.id !== id),
