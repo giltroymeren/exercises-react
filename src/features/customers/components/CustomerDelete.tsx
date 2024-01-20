@@ -3,7 +3,7 @@ import { Customer } from "../types";
 import { Button } from "antd";
 import NiceModal from "@ebay/nice-modal-react";
 import { useCustomersStore } from "../../../stores/customers";
-import SimpleModal from "../../../components/Elements/SimpleModal";
+import SimpleModal from "../../../components/Elements/SimpleModal/SimpleModal";
 import { useNavigate } from "react-router";
 
 type Props = {

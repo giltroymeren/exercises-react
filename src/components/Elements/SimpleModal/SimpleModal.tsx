@@ -4,7 +4,7 @@ import { ButtonProps, Modal } from "antd";
 
 type Props = {
   children: React.ReactNode;
-  handleSubmit: () => void;
+  handleSubmit?: () => void;
   title?: string;
   submitText?: string;
   submitProps?: ButtonProps;
@@ -24,13 +24,14 @@ const SimpleModal = ({
       title={title || ""}
       open={modal.visible}
       onOk={() => {
-        handleSubmit();
+        handleSubmit && handleSubmit();
         modal.hide();
       }}
       onCancel={modal.hide}
       afterClose={modal.remove}
       okText={submitText}
       okButtonProps={submitProps}
+      data-testid="modal"
     >
       {children}
     </Modal>
