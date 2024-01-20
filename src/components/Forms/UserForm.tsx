@@ -1,13 +1,20 @@
 import * as React from "react";
-import { Form, FormInstance, Input } from "antd";
+import { Button, Form, FormInstance, Input, Space } from "antd";
 import { useUsersStore } from "../../stores/users";
 
 type Props = {
   formInstance: FormInstance<any>;
+  handleSubmit: () => void;
+  handleCancel: () => void;
   userId?: number;
 };
 
-const UserForm = ({ formInstance, userId }: Props) => {
+const UserForm = ({
+  formInstance,
+  userId,
+  handleSubmit,
+  handleCancel,
+}: Props) => {
   const { getById } = useUsersStore();
   const initialValues = userId ? getById(userId) : {};
 
@@ -20,6 +27,7 @@ const UserForm = ({ formInstance, userId }: Props) => {
       scrollToFirstError
       name="validateOnly"
       initialValues={initialValues}
+      onFinish={handleSubmit}
     >
       <Form.Item label="Name" name="name" rules={[{ required: true }]}>
         <Input name="name" />
@@ -57,6 +65,14 @@ const UserForm = ({ formInstance, userId }: Props) => {
         rules={[{ required: true }]}
       >
         <Input name="company" />
+      </Form.Item>
+      <Form.Item>
+        <Space>
+          <Button onClick={handleCancel}>Cancel</Button>
+          <Button type="primary" htmlType="submit">
+            Create User
+          </Button>
+        </Space>
       </Form.Item>
     </Form>
   );
