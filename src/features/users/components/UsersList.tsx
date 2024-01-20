@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, Table, TableProps } from "antd";
+import { Button, Col, Drawer, Flex, Row, Table, TableProps } from "antd";
 import { useUsers } from "../api/getUsers";
 import { User } from "../types";
 import { useUsersStore } from "../../../stores/users";
@@ -7,13 +7,23 @@ import Spinner from "../../../components/Elements/Spinner";
 import { useNavigate } from "react-router";
 import NiceModal from "@ebay/nice-modal-react";
 import SimpleModal from "../../../components/Elements/SimpleModal";
+import { PlusOutlined } from "@ant-design/icons";
 
 const UsersList = () => {
   const navigate = useNavigate();
 
   const { users, fetched, setAll, remove } = useUsersStore();
-
   const usersQuery = useUsers();
+
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const openDrawer = React.useCallback(
+    () => setIsDrawerOpen(true),
+    [isDrawerOpen]
+  );
+  const closeDrawer = React.useCallback(
+    () => setIsDrawerOpen(false),
+    [isDrawerOpen]
+  );
 
   React.useEffect(() => {
     if (usersQuery.data && !fetched) {
@@ -95,13 +105,60 @@ const UsersList = () => {
 
   return (
     // TODO custom noData state
-    <Table<User>
-      dataSource={users}
-      columns={columns}
-      rowKey={({ id }) => id}
-      data-test="table-users"
-      rowClassName={({ id }) => `table-users-row-${id}`}
-    />
+    <>
+      <Row>
+        <Col span={24}>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            data-test="button-create"
+            onClick={() => {
+              openDrawer();
+              navigate("/user/create");
+            }}
+          >
+            Add User
+          </Button>
+
+          <Drawer
+            title="Create User"
+            width="50%"
+            open={isDrawerOpen}
+            onClose={() => {
+              closeDrawer();
+              navigate("/");
+            }}
+            footer={
+              <>
+                <Button onClick={closeDrawer}>Cancel</Button>
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    // TODO submit handler
+                    closeDrawer();
+                  }}
+                >
+                  Submit
+                </Button>
+              </>
+            }
+          >
+            <p>Hello</p>
+          </Drawer>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Table<User>
+            dataSource={users}
+            columns={columns}
+            rowKey={({ id }) => id}
+            data-test="table-users"
+            rowClassName={({ id }) => `table-users-row-${id}`}
+          />
+        </Col>
+      </Row>
+    </>
   );
 };
 
