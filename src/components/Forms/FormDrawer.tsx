@@ -4,7 +4,6 @@ import { Button, Drawer, Space } from "antd";
 type Props = {
   title: string;
   triggerButton: React.ReactElement;
-
   submitButton: React.ReactElement;
   children: React.ReactNode;
 };
@@ -34,6 +33,7 @@ const FormDrawer = ({
             {submitButton}
           </Space>
         }
+        data-test="drawer"
       >
         {children}
       </Drawer>

@@ -1,32 +1,18 @@
 import * as React from "react";
-import {
-  Button,
-  Col,
-  Drawer,
-  Flex,
-  Form,
-  Input,
-  Row,
-  Space,
-  Table,
-  TableProps,
-} from "antd";
+import { Button, Col, Row, Table, TableProps } from "antd";
 import { useUsers } from "../api/getUsers";
-import { NewUser, User } from "../types";
+import { User } from "../types";
 import { useUsersStore } from "../../../stores/users";
 import Spinner from "../../../components/Elements/Spinner";
 import { useNavigate } from "react-router";
 import NiceModal from "@ebay/nice-modal-react";
 import SimpleModal from "../../../components/Elements/SimpleModal";
-import { PlusOutlined } from "@ant-design/icons";
-import TextArea from "antd/es/input/TextArea";
-import UserForm from "../../../components/Forms/UserForm";
-import FormDrawer from "../../../components/Forms/FormDrawer";
+import UserCreate from "./UserCreate";
 
 const UsersList = () => {
   const navigate = useNavigate();
 
-  const { users, fetched, setAll, remove, create } = useUsersStore();
+  const { users, fetched, setAll, remove } = useUsersStore();
   const usersQuery = useUsers();
 
   React.useEffect(() => {
@@ -107,36 +93,12 @@ const UsersList = () => {
     },
   ];
 
-  const handleSubmit = (values: NewUser) => {
-    create({
-      ...values,
-    });
-  };
-
   return (
     // TODO custom noData state
     <>
       <Row>
         <Col span={24}>
-          <FormDrawer
-            title="Create User"
-            triggerButton={
-              <Button
-                type="primary"
-                icon={<PlusOutlined />}
-                data-test="button-create"
-              >
-                Add User
-              </Button>
-            }
-            submitButton={
-              <Button type="primary" htmlType="submit">
-                Create User
-              </Button>
-            }
-          >
-            <UserForm handleSubmit={handleSubmit} />
-          </FormDrawer>
+          <UserCreate />
         </Col>
       </Row>
       <Row>
