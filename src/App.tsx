@@ -5,7 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "./features/not-found/NotFound";
-import Spinner from "./components/Elements/Spinner";
+import Spinner from "./components/Elements/Spinner/Spinner";
 import CustomerProfile from "./features/customers/components/CustomerProfile";
 import NiceModal from "@ebay/nice-modal-react";
 

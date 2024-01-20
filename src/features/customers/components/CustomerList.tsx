@@ -3,7 +3,7 @@ import { Button, Col, Row, Space, Table, TableProps } from "antd";
 import { useCustomers } from "../api/getCustomers";
 import { Customer } from "../types";
 import { useCustomersStore } from "../../../stores/customers";
-import Spinner from "../../../components/Elements/Spinner";
+import Spinner from "../../../components/Elements/Spinner/Spinner";
 import { useNavigate } from "react-router";
 import CustomerCreate from "./CustomerCreate";
 import CustomerUpdate from "./CustomerUpdate";
