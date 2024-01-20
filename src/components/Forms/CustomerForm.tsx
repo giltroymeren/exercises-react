@@ -1,24 +1,24 @@
 import * as React from "react";
 import { Button, Form, FormInstance, Input, Space } from "antd";
-import { useUsersStore } from "../../stores/users";
+import { useCustomersStore } from "../../stores/customers";
 
 type Props = {
   formInstance: FormInstance<any>;
   submitText: string;
   handleSubmit: () => void;
   handleCancel: () => void;
-  userId?: number;
+  id?: number;
 };
 
-const UserForm = ({
+const CustomerForm = ({
   formInstance,
   submitText,
   handleSubmit,
   handleCancel,
-  userId,
+  id,
 }: Props) => {
-  const { getById } = useUsersStore();
-  const initialValues = userId ? getById(userId) : {};
+  const { getById } = useCustomersStore();
+  const initialValues = id ? getById(id) : {};
 
   const [submittable, setSubmittable] = React.useState(false);
   const values = Form.useWatch([], formInstance);
@@ -94,4 +94,4 @@ const UserForm = ({
   );
 };
 
-export default UserForm;
+export default CustomerForm;

@@ -1,19 +1,19 @@
 import * as React from "react";
 import { useNavigate, useParams } from "react-router";
-import { useUsersStore } from "../../../stores/users";
+import { useCustomersStore } from "../../../stores/customers";
 import { DescriptionsProps, Descriptions, Button, Space } from "antd";
-import UserUpdate from "./UserUpdate";
-import UserDelete from "./UserDelete";
+import CustomerUpdate from "./CustomerUpdate";
+import CustomerDelete from "./CustomerDelete";
 import NotFound from "../../not-found/NotFound";
 
-const UserProfile = () => {
+const CustomerProfile = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const { getById } = useUsersStore();
-  const user = getById(Number(id));
+  const { getById } = useCustomersStore();
+  const customer = getById(Number(id));
 
-  if (!user) {
+  if (!customer) {
     return <NotFound />;
   }
 
@@ -21,39 +21,39 @@ const UserProfile = () => {
     {
       key: "username",
       label: "Username",
-      children: <code>{user.username}</code>,
+      children: <code>{customer.username}</code>,
     },
     {
       key: "email",
       label: "Email Address",
-      children: <code>{user.email}</code>,
+      children: <code>{customer.email}</code>,
     },
     {
       key: "address",
       label: "Address",
-      children: user.address,
+      children: customer.address,
     },
     {
       key: "phone",
       label: "Contact number",
-      children: user.phone,
+      children: customer.phone,
     },
     {
       key: "website",
       label: "Website",
-      children: user.website,
+      children: customer.website,
     },
     {
       key: "company",
       label: "Company",
-      children: user.company,
+      children: customer.company,
     },
   ];
 
   return (
     <>
       <Descriptions
-        title={user.name}
+        title={customer.name}
         items={descriptions}
         colon={false}
         column={1}
@@ -63,12 +63,12 @@ const UserProfile = () => {
       />
 
       <Space>
-        <UserUpdate id={user.id} />
-        <UserDelete user={user} />
-        <Button onClick={() => navigate("/")}>See all users</Button>
+        <CustomerUpdate id={customer.id} />
+        <CustomerDelete customer={customer} />
+        <Button onClick={() => navigate("/")}>See all customers</Button>
       </Space>
     </>
   );
 };
 
-export default UserProfile;
+export default CustomerProfile;

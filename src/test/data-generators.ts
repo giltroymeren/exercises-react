@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 
 type Overrides = Record<string, any>;
 
-export const newUserGenerator = (overrides?: Overrides) => ({
+export const newCustomerGenerator = (overrides?: Overrides) => ({
   name: faker.person.fullName(),
   username: faker.internet.userName(),
   email: faker.internet.email(),
@@ -13,7 +13,7 @@ export const newUserGenerator = (overrides?: Overrides) => ({
   ...overrides,
 });
 
-export const userGenerator = (overrides?: Overrides) => ({
+export const customerGenerator = (overrides?: Overrides) => ({
   id: faker.number.int(),
-  ...newUserGenerator(),
+  ...newCustomerGenerator(),
 });

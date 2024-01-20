@@ -1,40 +1,40 @@
 import * as React from "react";
 import { Button, Col, Row, Space, Table, TableProps } from "antd";
-import { useUsers } from "../api/getUsers";
-import { User } from "../types";
-import { useUsersStore } from "../../../stores/users";
+import { useCustomers } from "../api/getCustomers";
+import { Customer } from "../types";
+import { useCustomersStore } from "../../../stores/customers";
 import Spinner from "../../../components/Elements/Spinner";
 import { useNavigate } from "react-router";
-import UserCreate from "./UserCreate";
-import UserUpdate from "./UserUpdate";
-import UserDelete from "./UserDelete";
+import CustomerCreate from "./CustomerCreate";
+import CustomerUpdate from "./CustomerUpdate";
+import CustomerDelete from "./CustomerDelete";
 import NotFound from "../../not-found/NotFound";
 
-const UsersList = () => {
+const CustomersList = () => {
   const navigate = useNavigate();
 
-  const { users, fetched, setAll } = useUsersStore();
-  const usersQuery = useUsers();
+  const { customers, fetched, setAll } = useCustomersStore();
+  const customersQuery = useCustomers();
 
   React.useEffect(() => {
-    if (usersQuery.data && !fetched) {
-      setAll(usersQuery.data);
+    if (customersQuery.data && !fetched) {
+      setAll(customersQuery.data);
     }
-  }, [usersQuery.data]);
+  }, [customersQuery.data]);
 
-  if (usersQuery.isLoading) {
+  if (customersQuery.isLoading) {
     return <Spinner />;
   }
 
-  if (usersQuery.isError) {
+  if (customersQuery.isError) {
     return <NotFound />;
   }
 
-  if (!users) {
+  if (!customers) {
     return null;
   }
 
-  const columns: TableProps<User>["columns"] = [
+  const columns: TableProps<Customer>["columns"] = [
     {
       title: "Name",
       dataIndex: "name",
@@ -62,17 +62,17 @@ const UsersList = () => {
     {
       title: "Actions",
       key: "actions",
-      render: (_, user) => (
-        <Space key={user.id}>
+      render: (_, customer) => (
+        <Space key={customer.id}>
           <Button
             type="primary"
             data-test="button-view"
-            onClick={() => navigate(`/user/${user.id}`)}
+            onClick={() => navigate(`/customer/${customer.id}`)}
           >
             View
           </Button>
-          <UserUpdate id={user.id} />
-          <UserDelete user={user} />
+          <CustomerUpdate id={customer.id} />
+          <CustomerDelete customer={customer} />
         </Space>
       ),
     },
@@ -80,25 +80,25 @@ const UsersList = () => {
 
   return (
     // TODO custom noData state
-    <div className="section-userlist">
+    <div className="section-list">
       <Row justify="space-around" align="middle">
         <Col span={12}>
           <h1>Available Customers</h1>
         </Col>
         <Col span={6} offset={6} className="container-create">
-          <UserCreate />
+          <CustomerCreate />
         </Col>
       </Row>
 
-      <Table<User>
-        dataSource={users}
+      <Table<Customer>
+        dataSource={customers}
         columns={columns}
         rowKey={({ id }) => id}
-        data-test="table-users"
-        rowClassName={({ id }) => `table-users-row-${id}`}
+        data-test="table-customers"
+        rowClassName={({ id }) => `table-customers-row-${id}`}
       />
     </div>
   );
 };
 
-export default UsersList;
+export default CustomersList;

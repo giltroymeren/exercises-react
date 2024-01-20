@@ -1,22 +1,22 @@
 import * as React from "react";
 import { Button, Form } from "antd";
-import UserForm from "../../../components/Forms/UserForm";
-import { User } from "../types";
-import { useUsersStore } from "../../../stores/users";
+import CustomerForm from "../../../components/Forms/CustomerForm";
+import { Customer } from "../types";
+import { useCustomersStore } from "../../../stores/customers";
 import useDrawer from "../../../hooks/useDrawer";
 
 type Props = {
   id: number;
 };
 
-const UserUpdate = ({ id }: Props) => {
-  const { edit } = useUsersStore();
+const CustomerUpdate = ({ id }: Props) => {
+  const { edit } = useCustomersStore();
   const [form] = Form.useForm();
 
   const { show, hide } = useDrawer();
 
   const handleSubmit = () => {
-    form.validateFields({ validateOnly: true }).then((values: User) => {
+    form.validateFields({ validateOnly: true }).then((values: Customer) => {
       edit({ ...values, id });
       hide();
     });
@@ -27,13 +27,13 @@ const UserUpdate = ({ id }: Props) => {
       data-test="button-edit"
       onClick={() => {
         show({
-          title: "Update User",
+          title: "Update Customer",
           onClose: hide,
           children: (
-            <UserForm
-              userId={id}
+            <CustomerForm
+              id={id}
               formInstance={form}
-              submitText="Update User"
+              submitText="Update Customer"
               handleSubmit={handleSubmit}
               handleCancel={hide}
             />
@@ -46,4 +46,4 @@ const UserUpdate = ({ id }: Props) => {
   );
 };
 
-export default UserUpdate;
+export default CustomerUpdate;

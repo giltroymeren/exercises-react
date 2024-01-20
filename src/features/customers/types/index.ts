@@ -1,4 +1,4 @@
-export type NewUser = {
+export type NewCustomer = {
   name: string;
   username: string;
   email: string;
@@ -8,6 +8,6 @@ export type NewUser = {
   company: string;
 };
 
-export type User = {
+export type Customer = {
   id: number;
-} & NewUser;
+} & NewCustomer;

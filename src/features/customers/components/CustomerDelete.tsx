@@ -1,18 +1,18 @@
 import * as React from "react";
-import { User } from "../types";
+import { Customer } from "../types";
 import { Button } from "antd";
 import NiceModal from "@ebay/nice-modal-react";
-import { useUsersStore } from "../../../stores/users";
+import { useCustomersStore } from "../../../stores/customers";
 import SimpleModal from "../../../components/Elements/SimpleModal";
 import { useNavigate } from "react-router";
 
 type Props = {
-  user: User;
+  customer: Customer;
 };
 
-const UserDelete = ({ user }: Props) => {
+const CustomerDelete = ({ customer }: Props) => {
   const navigate = useNavigate();
-  const { remove } = useUsersStore();
+  const { remove } = useCustomersStore();
 
   return (
     <Button
@@ -20,18 +20,19 @@ const UserDelete = ({ user }: Props) => {
       data-test="button-delete"
       onClick={() =>
         NiceModal.show(SimpleModal, {
-          title: "Delete User",
+          title: "Delete Customer",
           handleSubmit: () => {
-            remove(user.id);
+            remove(customer.id);
             navigate("/");
           },
           submitText: "Delete",
           submitProps: { type: "primary", danger: true },
           children: (
-            <>
-              Are you sure you want to delete user "<strong>{user.name}</strong>
-              "?
-            </>
+            <p>
+              Are you sure you want to delete Customer "
+              <strong>{customer.name}</strong>
+              "? This action is irreversible.
+            </p>
           ),
         })
       }
@@ -41,4 +42,4 @@ const UserDelete = ({ user }: Props) => {
   );
 };
 
-export default UserDelete;
+export default CustomerDelete;

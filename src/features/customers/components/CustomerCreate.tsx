@@ -1,19 +1,19 @@
 import * as React from "react";
 import { Button, Form, Space } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import UserForm from "../../../components/Forms/UserForm";
-import { NewUser } from "../types";
-import { useUsersStore } from "../../../stores/users";
+import CustomerForm from "../../../components/Forms/CustomerForm";
+import { NewCustomer } from "../types";
+import { useCustomersStore } from "../../../stores/customers";
 import useDrawer from "../../../hooks/useDrawer";
 
-const UserCreate = () => {
-  const { create } = useUsersStore();
+const CustomerCreate = () => {
+  const { create } = useCustomersStore();
   const [form] = Form.useForm();
 
   const { show, hide } = useDrawer();
 
   const handleSubmit = () => {
-    form.validateFields({ validateOnly: true }).then((values: NewUser) => {
+    form.validateFields({ validateOnly: true }).then((values: NewCustomer) => {
       create(values);
       form.resetFields();
       hide();
@@ -27,12 +27,12 @@ const UserCreate = () => {
       data-test="button-create"
       onClick={() => {
         show({
-          title: "Create User",
+          title: "Create Customer",
           onClose: hide,
           children: (
-            <UserForm
+            <CustomerForm
               formInstance={form}
-              submitText="Create User"
+              submitText="Create Customer"
               handleSubmit={handleSubmit}
               handleCancel={hide}
             />
@@ -40,9 +40,9 @@ const UserCreate = () => {
         });
       }}
     >
-      Create User
+      Create Customer
     </Button>
   );
 };
 
-export default UserCreate;
+export default CustomerCreate;
