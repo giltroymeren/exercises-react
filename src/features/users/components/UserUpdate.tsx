@@ -1,19 +1,15 @@
 import * as React from "react";
 import FormDrawer from "../../../components/Forms/FormDrawer";
 import { Button, Form } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import UserForm from "../../../components/Forms/UserForm";
 import { User } from "../types";
 import { useUsersStore } from "../../../stores/users";
-import { useNavigate } from "react-router";
 
 type Props = {
   id: number;
 };
 
 const UserUpdate = ({ id }: Props) => {
-  const navigate = useNavigate();
-
   const { edit } = useUsersStore();
   const [form] = Form.useForm();
 

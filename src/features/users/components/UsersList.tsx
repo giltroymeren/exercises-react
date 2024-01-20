@@ -5,8 +5,6 @@ import { User } from "../types";
 import { useUsersStore } from "../../../stores/users";
 import Spinner from "../../../components/Elements/Spinner";
 import { useNavigate } from "react-router";
-import NiceModal from "@ebay/nice-modal-react";
-import SimpleModal from "../../../components/Elements/SimpleModal";
 import UserCreate from "./UserCreate";
 import UserUpdate from "./UserUpdate";
 import UserDelete from "./UserDelete";

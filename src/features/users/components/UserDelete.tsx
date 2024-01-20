@@ -29,7 +29,8 @@ const UserDelete = ({ user }: Props) => {
           submitProps: { type: "primary", danger: true },
           children: (
             <>
-              Do you want to delete user "<strong>{user.name}</strong>"?
+              Are you sure you want to delete user "<strong>{user.name}</strong>
+              "?
             </>
           ),
         })

@@ -2,7 +2,6 @@ import * as React from "react";
 import { Form, FormInstance, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useUsersStore } from "../../stores/users";
-import { User } from "../../features/users";
 
 type Props = {
   formInstance: FormInstance<any>;
