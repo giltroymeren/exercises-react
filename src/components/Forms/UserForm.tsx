@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Form, FormInstance, Input } from "antd";
-import TextArea from "antd/es/input/TextArea";
 import { useUsersStore } from "../../stores/users";
 
 type Props = {
@@ -50,7 +49,7 @@ const UserForm = ({ formInstance, userId }: Props) => {
         <Input name="phone" />
       </Form.Item>
       <Form.Item label="Address" name="address" rules={[{ required: true }]}>
-        <TextArea name="address" />
+        <Input.TextArea name="address" />
       </Form.Item>
       <Form.Item
         label="Company Name"
