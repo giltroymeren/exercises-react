@@ -1,12 +1,18 @@
 import * as React from "react";
 import { Form, FormInstance, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
+import { useUsersStore } from "../../stores/users";
+import { User } from "../../features/users";
 
 type Props = {
   formInstance: FormInstance<any>;
+  userId?: number;
 };
 
-const UserForm = ({ formInstance }: Props) => {
+const UserForm = ({ formInstance, userId }: Props) => {
+  const { getById } = useUsersStore();
+  const initialValues = userId ? getById(userId) : {};
+
   return (
     <Form
       form={formInstance}
@@ -15,6 +21,7 @@ const UserForm = ({ formInstance }: Props) => {
       data-test="form-create"
       scrollToFirstError
       name="validateOnly"
+      initialValues={initialValues}
     >
       <Form.Item label="Name" name="name" rules={[{ required: true }]}>
         <Input name="name" />

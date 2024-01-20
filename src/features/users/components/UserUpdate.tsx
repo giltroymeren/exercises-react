@@ -3,41 +3,40 @@ import FormDrawer from "../../../components/Forms/FormDrawer";
 import { Button, Form } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import UserForm from "../../../components/Forms/UserForm";
-import { NewUser } from "../types";
+import { User } from "../types";
 import { useUsersStore } from "../../../stores/users";
+import { useNavigate } from "react-router";
 
-const UserCreate = () => {
-  const { create } = useUsersStore();
+type Props = {
+  id: number;
+};
+
+const UserUpdate = ({ id }: Props) => {
+  const navigate = useNavigate();
+
+  const { edit } = useUsersStore();
   const [form] = Form.useForm();
 
   const handleSubmit = () => {
-    form.validateFields({ validateOnly: true }).then((values: NewUser) => {
-      create(values);
+    form.validateFields({ validateOnly: true }).then((values: User) => {
+      edit({ ...values, id });
     });
   };
 
   return (
     <FormDrawer
-      title="Create User"
-      triggerButton={
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          data-test="button-create"
-        >
-          Create User
-        </Button>
-      }
+      title="Update User"
+      triggerButton={<Button data-test="button-edit">Update</Button>}
       submitButton={
         <Button type="primary" htmlType="submit">
-          Create User
+          Update User
         </Button>
       }
       submitHandler={handleSubmit}
     >
-      <UserForm formInstance={form} />
+      <UserForm formInstance={form} userId={id} />
     </FormDrawer>
   );
 };
 
-export default UserCreate;
+export default UserUpdate;

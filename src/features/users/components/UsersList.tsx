@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, Col, Row, Table, TableProps } from "antd";
+import { Button, Col, Row, Space, Table, TableProps } from "antd";
 import { useUsers } from "../api/getUsers";
 import { User } from "../types";
 import { useUsersStore } from "../../../stores/users";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 import NiceModal from "@ebay/nice-modal-react";
 import SimpleModal from "../../../components/Elements/SimpleModal";
 import UserCreate from "./UserCreate";
+import UserUpdate from "./UserUpdate";
 
 const UsersList = () => {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ const UsersList = () => {
       title: "Actions",
       key: "actions",
       render: (_, { id, name }) => (
-        <div key={id}>
+        <Space key={id}>
           <Button
             type="primary"
             data-test="button-view"
@@ -68,7 +69,7 @@ const UsersList = () => {
           >
             View
           </Button>
-          <Button data-test="button-edit">Edit</Button>
+          <UserUpdate id={id} />
           <Button
             danger
             data-test="button-delete"
@@ -88,7 +89,7 @@ const UsersList = () => {
           >
             Delete
           </Button>
-        </div>
+        </Space>
       ),
     },
   ];

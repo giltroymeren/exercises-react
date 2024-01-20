@@ -1,9 +1,10 @@
 import * as React from "react";
 import { useNavigate, useParams } from "react-router";
 import { useUsersStore } from "../../../stores/users";
-import { DescriptionsProps, Descriptions, Button } from "antd";
+import { DescriptionsProps, Descriptions, Button, Space } from "antd";
 import NiceModal from "@ebay/nice-modal-react";
 import SimpleModal from "../../../components/Elements/SimpleModal";
+import UserUpdate from "./UserUpdate";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -56,7 +57,8 @@ const UserProfile = () => {
         data-test="container-profile"
       />
 
-      <div>
+      <Space>
+        <UserUpdate id={user.id} />
         <Button
           danger
           data-test="button-delete"
@@ -80,7 +82,7 @@ const UserProfile = () => {
           Delete this user
         </Button>
         <Button onClick={() => navigate("/")}>See all users</Button>
-      </div>
+      </Space>
     </>
   );
 };
