@@ -33,8 +33,8 @@ const FooterSection = () => (
 const MainLayout = () => (
   <Layout>
     <HeaderSection />
-    <Layout data-test="section-body" className="section-body">
-      <Layout.Content>
+    <Layout>
+      <Layout.Content data-test="section-body" className="section-body">
         <Outlet />
       </Layout.Content>
     </Layout>

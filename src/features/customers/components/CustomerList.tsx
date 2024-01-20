@@ -9,6 +9,7 @@ import CustomerCreate from "./CustomerCreate";
 import CustomerUpdate from "./CustomerUpdate";
 import CustomerDelete from "./CustomerDelete";
 import NotFound from "../../not-found/NotFound";
+import { Link } from "react-router-dom";
 
 const CustomersList = () => {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ const CustomersList = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      render: (_, { id, name }) => <Link to={`/customer/${id}`}>{name}</Link>,
       sorter: (a, b) => a.name.localeCompare(b.name),
       sortDirections: ["ascend", "descend"],
     },
@@ -64,13 +66,6 @@ const CustomersList = () => {
       key: "actions",
       render: (_, customer) => (
         <Space key={customer.id}>
-          <Button
-            type="primary"
-            data-test="button-view"
-            onClick={() => navigate(`/customer/${customer.id}`)}
-          >
-            View
-          </Button>
           <CustomerUpdate id={customer.id} />
           <CustomerDelete customer={customer} />
         </Space>
@@ -81,11 +76,15 @@ const CustomersList = () => {
   return (
     // TODO custom noData state
     <div className="section-list">
-      <Row justify="space-around" align="middle">
+      <Row
+        justify="space-around"
+        align="middle"
+        className="container-body-title"
+      >
         <Col span={12}>
           <h1>Available Customers</h1>
         </Col>
-        <Col span={6} offset={6} className="container-create">
+        <Col span={6} offset={6} className="container-body-title-buttons">
           <CustomerCreate />
         </Col>
       </Row>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useNavigate, useParams } from "react-router";
 import { useCustomersStore } from "../../../stores/customers";
-import { DescriptionsProps, Descriptions, Button, Space } from "antd";
+import { DescriptionsProps, Descriptions, Button, Space, Row, Col } from "antd";
 import CustomerUpdate from "./CustomerUpdate";
 import CustomerDelete from "./CustomerDelete";
 import NotFound from "../../not-found/NotFound";
@@ -52,8 +52,23 @@ const CustomerProfile = () => {
 
   return (
     <>
+      <Row
+        justify="space-around"
+        align="middle"
+        className="container-body-title"
+      >
+        <Col span={12}>
+          <h1>{customer.name}</h1>
+        </Col>
+        <Col span={6} offset={6} className="container-body-title-buttons">
+          <Space>
+            <CustomerUpdate id={customer.id} />
+            <CustomerDelete customer={customer} />
+          </Space>
+        </Col>
+      </Row>
+
       <Descriptions
-        title={customer.name}
         items={descriptions}
         colon={false}
         column={1}
@@ -62,11 +77,11 @@ const CustomerProfile = () => {
         data-test="container-profile"
       />
 
-      <Space>
-        <CustomerUpdate id={customer.id} />
-        <CustomerDelete customer={customer} />
-        <Button onClick={() => navigate("/")}>See all customers</Button>
-      </Space>
+      <Row justify="center" align="middle" className="container-body-footer">
+        <Col>
+          <Button onClick={() => navigate("/")}>See all customers</Button>
+        </Col>
+      </Row>
     </>
   );
 };
