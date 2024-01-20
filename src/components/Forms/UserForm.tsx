@@ -20,6 +20,20 @@ const UserForm = ({
   const { getById } = useUsersStore();
   const initialValues = userId ? getById(userId) : {};
 
+  const [submittable, setSubmittable] = React.useState(false);
+  const values = Form.useWatch([], formInstance);
+
+  React.useEffect(() => {
+    formInstance.validateFields({ validateOnly: true }).then(
+      () => {
+        setSubmittable(true);
+      },
+      () => {
+        setSubmittable(false);
+      }
+    );
+  }, [values]);
+
   return (
     <Form
       form={formInstance}
@@ -71,7 +85,7 @@ const UserForm = ({
       <Form.Item>
         <Space>
           <Button onClick={handleCancel}>Cancel</Button>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" disabled={!submittable}>
             {submitText}
           </Button>
         </Space>
