@@ -7,11 +7,12 @@ import {
   Form,
   Input,
   Row,
+  Space,
   Table,
   TableProps,
 } from "antd";
 import { useUsers } from "../api/getUsers";
-import { User } from "../types";
+import { NewUser, User } from "../types";
 import { useUsersStore } from "../../../stores/users";
 import Spinner from "../../../components/Elements/Spinner";
 import { useNavigate } from "react-router";
@@ -23,7 +24,7 @@ import TextArea from "antd/es/input/TextArea";
 const UsersList = () => {
   const navigate = useNavigate();
 
-  const { users, fetched, setAll, remove } = useUsersStore();
+  const { users, fetched, setAll, remove, create } = useUsersStore();
   const usersQuery = useUsers();
 
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
@@ -37,6 +38,7 @@ const UsersList = () => {
   );
 
   const [form] = Form.useForm();
+  const formValues = Form.useWatch<NewUser>([], form);
 
   React.useEffect(() => {
     if (usersQuery.data && !fetched) {
@@ -116,6 +118,14 @@ const UsersList = () => {
     },
   ];
 
+  const handleSubmit = (values: NewUser) => {
+    console.info("Creating user:", values);
+    create({
+      ...values,
+    });
+    closeDrawer();
+  };
+
   return (
     // TODO custom noData state
     <>
@@ -144,42 +154,39 @@ const UsersList = () => {
           >
             <Form
               layout="vertical"
-              form={form}
               autoComplete="off"
               data-test="form-create"
+              scrollToFirstError
+              onFinish={handleSubmit}
             >
-              <Form.Item label="Name">
-                <Input />
+              <Form.Item label="Name" name="name">
+                <Input name="name" />
               </Form.Item>
-              <Form.Item label="Username">
-                <Input />
+              <Form.Item label="Username" name="username">
+                <Input name="username" />
               </Form.Item>
-              <Form.Item label="Email">
-                <Input />
+              <Form.Item label="Email" name="email">
+                <Input name="email" />
               </Form.Item>
-              <Form.Item label="Website">
-                <Input />
+              <Form.Item label="Website" name="website">
+                <Input name="website" />
               </Form.Item>
-              <Form.Item label="Phone">
-                <Input />
+              <Form.Item label="Phone" name="phone">
+                <Input name="phone" />
               </Form.Item>
-              <Form.Item label="Address">
-                <TextArea />
+              <Form.Item label="Address" name="address">
+                <TextArea name="address" />
               </Form.Item>
-              <Form.Item label="Company Name">
-                <Input />
+              <Form.Item label="Company Name" name="company">
+                <Input name="company" />
               </Form.Item>
               <Form.Item>
-                <Button onClick={closeDrawer}>Cancel</Button>
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    // TODO submit handler
-                    closeDrawer();
-                  }}
-                >
-                  Create User
-                </Button>
+                <Space>
+                  <Button onClick={closeDrawer}>Cancel</Button>
+                  <Button type="primary" htmlType="submit">
+                    Create User
+                  </Button>
+                </Space>
               </Form.Item>
             </Form>
           </Drawer>

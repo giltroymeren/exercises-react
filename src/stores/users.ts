@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { User } from "../features/users/types";
+import { NewUser, User } from "../features/users/types";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 type State = {
@@ -10,7 +10,7 @@ type State = {
 type Actions = {
   setAll: (users: User[]) => void;
   getById: (id: number) => User | undefined;
-  create: (user: User) => void;
+  create: (user: NewUser) => void;
   remove: (id: number) => void;
   edit: (newUser: User) => void;
 };
@@ -27,8 +27,9 @@ export const useUsersStore = create<State & Actions>()(
       setAll: (users) => set({ users, fetched: true }),
       getById: (id) => get().users.find((user) => user.id === id) || undefined,
       create: (user) =>
+        // TODO call query
         set((state) => ({
-          users: [...state.users, user],
+          users: [...state.users, { ...user, id: 1 }],
         })),
       remove: (id) =>
         set((state) => ({
