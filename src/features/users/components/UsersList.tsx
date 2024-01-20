@@ -64,7 +64,7 @@ const UsersList = () => {
       title: "Company",
       dataIndex: "company",
       key: "company",
-      render: (_, { company }) => company.name,
+      render: (_, { company }) => company,
     },
     {
       title: "Actions",

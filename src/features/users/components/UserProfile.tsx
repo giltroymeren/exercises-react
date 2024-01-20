@@ -2,17 +2,8 @@ import * as React from "react";
 import { useNavigate, useParams } from "react-router";
 import { useUsersStore } from "../../../stores/users";
 import { DescriptionsProps, Descriptions, Button } from "antd";
-import { User } from "../types";
 import NiceModal from "@ebay/nice-modal-react";
 import SimpleModal from "../../../components/Elements/SimpleModal";
-
-
-const getAndFormatAddress = (user: User) => (
-  <>
-    {user.address.suite} {user.address.street} Street, {user.address.zipcode}{" "}
-    {user.address.city}
-  </>
-);
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -39,7 +30,7 @@ const UserProfile = () => {
     {
       key: "address",
       label: "Address",
-      children: getAndFormatAddress(user),
+      children: user.address,
     },
     {
       key: "phone",
@@ -49,7 +40,7 @@ const UserProfile = () => {
     {
       key: "company",
       label: "Company",
-      children: user.company.name,
+      children: user.company,
     },
   ];
 

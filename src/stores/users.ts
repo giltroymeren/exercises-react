@@ -43,7 +43,7 @@ export const useUsersStore = create<State & Actions>()(
     }),
     {
       name: "users-storage",
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
