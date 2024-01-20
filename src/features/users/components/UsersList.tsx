@@ -1,5 +1,15 @@
 import * as React from "react";
-import { Button, Col, Drawer, Flex, Row, Table, TableProps } from "antd";
+import {
+  Button,
+  Col,
+  Drawer,
+  Flex,
+  Form,
+  Input,
+  Row,
+  Table,
+  TableProps,
+} from "antd";
 import { useUsers } from "../api/getUsers";
 import { User } from "../types";
 import { useUsersStore } from "../../../stores/users";
@@ -8,6 +18,7 @@ import { useNavigate } from "react-router";
 import NiceModal from "@ebay/nice-modal-react";
 import SimpleModal from "../../../components/Elements/SimpleModal";
 import { PlusOutlined } from "@ant-design/icons";
+import TextArea from "antd/es/input/TextArea";
 
 const UsersList = () => {
   const navigate = useNavigate();
@@ -24,6 +35,8 @@ const UsersList = () => {
     () => setIsDrawerOpen(false),
     [isDrawerOpen]
   );
+
+  const [form] = Form.useForm();
 
   React.useEffect(() => {
     if (usersQuery.data && !fetched) {
@@ -128,8 +141,35 @@ const UsersList = () => {
               closeDrawer();
               navigate("/");
             }}
-            footer={
-              <>
+          >
+            <Form
+              layout="vertical"
+              form={form}
+              autoComplete="off"
+              data-test="form-create"
+            >
+              <Form.Item label="Name">
+                <Input />
+              </Form.Item>
+              <Form.Item label="Username">
+                <Input />
+              </Form.Item>
+              <Form.Item label="Email">
+                <Input />
+              </Form.Item>
+              <Form.Item label="Website">
+                <Input />
+              </Form.Item>
+              <Form.Item label="Phone">
+                <Input />
+              </Form.Item>
+              <Form.Item label="Address">
+                <TextArea />
+              </Form.Item>
+              <Form.Item label="Company Name">
+                <Input />
+              </Form.Item>
+              <Form.Item>
                 <Button onClick={closeDrawer}>Cancel</Button>
                 <Button
                   type="primary"
@@ -138,12 +178,10 @@ const UsersList = () => {
                     closeDrawer();
                   }}
                 >
-                  Submit
+                  Create User
                 </Button>
-              </>
-            }
-          >
-            <p>Hello</p>
+              </Form.Item>
+            </Form>
           </Drawer>
         </Col>
       </Row>
