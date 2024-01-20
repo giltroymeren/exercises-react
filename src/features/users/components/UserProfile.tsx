@@ -2,8 +2,6 @@ import * as React from "react";
 import { useNavigate, useParams } from "react-router";
 import { useUsersStore } from "../../../stores/users";
 import { DescriptionsProps, Descriptions, Button, Space } from "antd";
-import NiceModal from "@ebay/nice-modal-react";
-import SimpleModal from "../../../components/Elements/SimpleModal";
 import UserUpdate from "./UserUpdate";
 import UserDelete from "./UserDelete";
 
@@ -38,6 +36,11 @@ const UserProfile = () => {
       key: "phone",
       label: "Contact number",
       children: user.phone,
+    },
+    {
+      key: "website",
+      label: "Website",
+      children: user.website,
     },
     {
       key: "company",
