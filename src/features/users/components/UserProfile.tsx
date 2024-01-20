@@ -5,12 +5,13 @@ import { DescriptionsProps, Descriptions, Button, Space } from "antd";
 import NiceModal from "@ebay/nice-modal-react";
 import SimpleModal from "../../../components/Elements/SimpleModal";
 import UserUpdate from "./UserUpdate";
+import UserDelete from "./UserDelete";
 
 const UserProfile = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const { getById, remove } = useUsersStore();
+  const { getById } = useUsersStore();
   const user = getById(Number(id));
 
   if (!user) {
@@ -59,28 +60,7 @@ const UserProfile = () => {
 
       <Space>
         <UserUpdate id={user.id} />
-        <Button
-          danger
-          data-test="button-delete"
-          onClick={() =>
-            NiceModal.show(SimpleModal, {
-              title: "Delete User",
-              handleSubmit: () => {
-                remove(user.id);
-                navigate("/");
-              },
-              submitText: "Delete",
-              submitProps: { type: "primary", danger: true },
-              children: (
-                <>
-                  Do you want to delete user "<strong>{user.name}</strong>"?
-                </>
-              ),
-            })
-          }
-        >
-          Delete this user
-        </Button>
+        <UserDelete user={user} />
         <Button onClick={() => navigate("/")}>See all users</Button>
       </Space>
     </>

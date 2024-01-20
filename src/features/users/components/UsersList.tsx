@@ -9,6 +9,7 @@ import NiceModal from "@ebay/nice-modal-react";
 import SimpleModal from "../../../components/Elements/SimpleModal";
 import UserCreate from "./UserCreate";
 import UserUpdate from "./UserUpdate";
+import UserDelete from "./UserDelete";
 
 const UsersList = () => {
   const navigate = useNavigate();
@@ -60,35 +61,17 @@ const UsersList = () => {
     {
       title: "Actions",
       key: "actions",
-      render: (_, { id, name }) => (
-        <Space key={id}>
+      render: (_, user) => (
+        <Space key={user.id}>
           <Button
             type="primary"
             data-test="button-view"
-            onClick={() => navigate(`/user/${id}`)}
+            onClick={() => navigate(`/user/${user.id}`)}
           >
             View
           </Button>
-          <UserUpdate id={id} />
-          <Button
-            danger
-            data-test="button-delete"
-            onClick={() =>
-              NiceModal.show(SimpleModal, {
-                title: "Delete User",
-                handleSubmit: () => remove(id),
-                submitText: "Delete",
-                submitProps: { type: "primary", danger: true },
-                children: (
-                  <>
-                    Do you want to delete user "<strong>{name}</strong>"?
-                  </>
-                ),
-              })
-            }
-          >
-            Delete
-          </Button>
+          <UserUpdate id={user.id} />
+          <UserDelete user={user} />
         </Space>
       ),
     },
