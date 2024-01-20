@@ -4,6 +4,7 @@ import { useUsersStore } from "../../stores/users";
 
 type Props = {
   formInstance: FormInstance<any>;
+  submitText: string;
   handleSubmit: () => void;
   handleCancel: () => void;
   userId?: number;
@@ -11,9 +12,10 @@ type Props = {
 
 const UserForm = ({
   formInstance,
-  userId,
+  submitText,
   handleSubmit,
   handleCancel,
+  userId,
 }: Props) => {
   const { getById } = useUsersStore();
   const initialValues = userId ? getById(userId) : {};
@@ -70,7 +72,7 @@ const UserForm = ({
         <Space>
           <Button onClick={handleCancel}>Cancel</Button>
           <Button type="primary" htmlType="submit">
-            Create User
+            {submitText}
           </Button>
         </Space>
       </Form.Item>

@@ -1,5 +1,4 @@
 import * as React from "react";
-import FormDrawer from "../../../components/Forms/FormDrawer";
 import { Button, Form, Space } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import UserForm from "../../../components/Forms/UserForm";
@@ -33,6 +32,7 @@ const UserCreate = () => {
           children: (
             <UserForm
               formInstance={form}
+              submitText="Create User"
               handleSubmit={handleSubmit}
               handleCancel={hide}
             />
