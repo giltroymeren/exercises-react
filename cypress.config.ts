@@ -1,6 +1,7 @@
-const webpackConfig = require("./webpack.config.js");
+import { defineConfig } from "cypress";
+import webpackConfig from "./webpack.config.js";
 
-module.exports = {
+export default defineConfig({
   component: {
     devServer: {
       framework: "react",
@@ -8,10 +9,7 @@ module.exports = {
       webpackConfig: webpackConfig,
     },
   },
-
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    baseUrl: "http://localhost:4000",
   },
-};
+});
