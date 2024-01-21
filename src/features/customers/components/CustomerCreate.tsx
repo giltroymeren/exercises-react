@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Button, Form, Space } from "antd";
+import { Button, Form } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import CustomerForm from "../../../components/Forms/CustomerForm";
-import { NewCustomer } from "../types";
-import { useCustomersStore } from "../../../stores/customers";
-import useDrawer from "../../../hooks/useDrawer";
+import useDrawer from "@/hooks/useDrawer";
+import { useCustomersStore } from "@/stores/customers";
+import { NewCustomer } from "@/features/customers";
+import CustomerForm from "@/components/Forms/CustomerForm";
 
 const CustomerCreate = () => {
   const { create } = useCustomersStore();

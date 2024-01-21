@@ -1,6 +1,9 @@
 import { act, renderHook } from "@testing-library/react";
 import { useCustomersStore } from "../customers";
-import { newCustomerGenerator, customerGenerator } from "../../test/data-generators";
+import {
+  customerGenerator,
+  newCustomerGenerator,
+} from "@/test/data-generators";
 
 const initialStoreState = useCustomersStore.getState();
 

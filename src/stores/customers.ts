@@ -1,5 +1,5 @@
+import { Customer, NewCustomer } from "@/features/customers/types";
 import { create } from "zustand";
-import { NewCustomer, Customer } from "../features/customers/types";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 type State = {

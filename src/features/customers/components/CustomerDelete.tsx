@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Customer } from "../types";
 import { Button } from "antd";
 import NiceModal from "@ebay/nice-modal-react";
-import { useCustomersStore } from "../../../stores/customers";
-import SimpleModal from "../../../components/Elements/SimpleModal/SimpleModal";
 import { useNavigate } from "react-router";
+import { useCustomersStore } from "@/stores/customers";
+import { Customer } from "@/features";
+import SimpleModal from "@/components/Elements/SimpleModal/SimpleModal";
 
 type Props = {
   customer: Customer;

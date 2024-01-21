@@ -1,19 +1,16 @@
 import * as React from "react";
-import { Button, Col, Row, Space, Table, TableProps } from "antd";
+import { Col, Row, Space, Table, TableProps } from "antd";
 import { useCustomers } from "../api/getCustomers";
 import { Customer } from "../types";
 import { useCustomersStore } from "../../../stores/customers";
 import Spinner from "../../../components/Elements/Spinner/Spinner";
-import { useNavigate } from "react-router";
 import CustomerCreate from "./CustomerCreate";
 import CustomerUpdate from "./CustomerUpdate";
 import CustomerDelete from "./CustomerDelete";
-import NotFound from "../../not-found/NotFound";
 import { Link } from "react-router-dom";
+import NotFound from "@/features/not-found/NotFound";
 
 const CustomersList = () => {
-  const navigate = useNavigate();
-
   const { customers, fetched, setAll } = useCustomersStore();
   const customersQuery = useCustomers();
 
@@ -74,7 +71,6 @@ const CustomersList = () => {
   ];
 
   return (
-    // TODO custom noData state
     <div className="section-list">
       <Row
         justify="space-around"

@@ -1,8 +1,8 @@
 import * as React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Button } from "antd";
-import SimpleModal from "../SimpleModal";
 import NiceModal from "@ebay/nice-modal-react";
+import SimpleModal from "../SimpleModal";
 
 const TESTID = "modal";
 const TITLE = "Modal Title";

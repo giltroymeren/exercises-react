@@ -1,10 +1,9 @@
-import * as React from "react";
-import useRemoveModals from "./useRemoveModals";
 import * as NiceModal from "@ebay/nice-modal-react";
 import {
   SimpleDrawer,
   SimpleDrawerProps,
-} from "../components/Elements/SimpleDrawer";
+} from "@/components/Elements/SimpleDrawer";
+import useRemoveModals from "./useRemoveModals";
 
 const useDrawer = (config?: {
   persistOnMount: boolean;

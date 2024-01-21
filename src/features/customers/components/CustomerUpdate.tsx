@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Button, Form } from "antd";
-import CustomerForm from "../../../components/Forms/CustomerForm";
-import { Customer } from "../types";
-import { useCustomersStore } from "../../../stores/customers";
-import useDrawer from "../../../hooks/useDrawer";
+import { useCustomersStore } from "@/stores/customers";
+import useDrawer from "@/hooks/useDrawer";
+import { Customer } from "@/features";
+import CustomerForm from "@/components/Forms/CustomerForm";
 
 type Props = {
   id: number;

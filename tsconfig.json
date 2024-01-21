@@ -6,7 +6,12 @@
     "moduleResolution": "node",
     "outDir": "./dist",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src/**/*", "cypress.config.ts"]
+  "include": ["src/**/*", "cypress.config.ts"],
+  "exclude": ["node_modules"]
 }

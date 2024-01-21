@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button, Form, FormInstance, Input, Space } from "antd";
-import { useCustomersStore } from "../../stores/customers";
+import { useCustomersStore } from "@/stores/customers";
 
 type Props = {
   formInstance: FormInstance<any>;

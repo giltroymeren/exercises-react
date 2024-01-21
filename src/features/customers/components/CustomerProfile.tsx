@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useNavigate, useParams } from "react-router";
-import { useCustomersStore } from "../../../stores/customers";
 import { DescriptionsProps, Descriptions, Button, Space, Row, Col } from "antd";
 import CustomerUpdate from "./CustomerUpdate";
 import CustomerDelete from "./CustomerDelete";
-import NotFound from "../../not-found/NotFound";
+import { useCustomersStore } from "@/stores/customers";
+import NotFound from "@/features/not-found/NotFound";
 
 const CustomerProfile = () => {
   const navigate = useNavigate();
