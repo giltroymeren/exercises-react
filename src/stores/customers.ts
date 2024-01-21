@@ -53,3 +53,13 @@ export const useCustomersStore = create<State & Actions>()(
     }
   )
 );
+
+/**
+ * Enables access of the zustand store during testing
+ * @author Gleb Bahmutov
+ * @link https://glebbahmutov.com/blog/spok-redux/
+ */
+if (window.Cypress) {
+  //@ts-ignore
+  window.Storage = useCustomersStore;
+}

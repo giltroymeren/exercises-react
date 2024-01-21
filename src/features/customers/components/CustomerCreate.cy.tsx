@@ -9,6 +9,8 @@ import {
   getTestIdSelector,
 } from "../../../../cypress/support/utils";
 import { newCustomerGenerator } from "@/test/data-generators";
+import { useCustomersStore } from "@/stores/customers";
+import { Customer } from "../types";
 
 const TEXT_BUTTON_CREATE = "Create Customer";
 
@@ -91,6 +93,8 @@ describe("CustomerCreate", () => {
   });
 
   it("creates a customer if all fields are valid", () => {
+    useCustomersStore.setState({ customers: [], fetched: true }, true);
+
     const newCustomer = newCustomerGenerator();
 
     cy.get(getNameSelector(CustomerFieldNames.name)).type(newCustomer.name);
@@ -111,5 +115,14 @@ describe("CustomerCreate", () => {
 
     cy.get(SELECTOR_BUTTON_SUBMIT).should("not.be.disabled");
     cy.get(SELECTOR_BUTTON_SUBMIT).click();
+
+    cy.window()
+      .its("Storage")
+      .invoke("getState")
+      .its("customers[0]")
+      .then((actualCustomer: Customer) => {
+        const { id, ...actualCustomerWithoutId } = actualCustomer;
+        expect(actualCustomerWithoutId).to.deep.equal(newCustomer);
+      });
   });
 });
