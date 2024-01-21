@@ -49,40 +49,40 @@ describe("CustomerCreate", () => {
   });
 
   it("validates fields and does not allow submit if a field is invalid", () => {
-    const newCustomer = newCustomerGenerator();
+    const expectedCustomer = newCustomerGenerator();
 
     cy.get(getNameSelector(CustomerFieldNames.name))
-      .type(newCustomer.name)
+      .type(expectedCustomer.name)
       .clear();
     cy.contains(getFieldErrorMessage(CustomerFieldNames.name));
 
     cy.get(getNameSelector(CustomerFieldNames.username))
-      .type(newCustomer.username)
+      .type(expectedCustomer.username)
       .clear();
     cy.contains(getFieldErrorMessage(CustomerFieldNames.username));
 
     cy.get(getNameSelector(CustomerFieldNames.email))
-      .type(newCustomer.email)
+      .type(expectedCustomer.email)
       .clear();
     cy.contains(getFieldErrorMessage(CustomerFieldNames.email));
 
     cy.get(getNameSelector(CustomerFieldNames.website))
-      .type(newCustomer.website)
+      .type(expectedCustomer.website)
       .clear();
     cy.contains(getFieldErrorMessage(CustomerFieldNames.website));
 
     cy.get(getNameSelector(CustomerFieldNames.phone))
-      .type(newCustomer.phone)
+      .type(expectedCustomer.phone)
       .clear();
     cy.contains(getFieldErrorMessage(CustomerFieldNames.phone));
 
     cy.get(getNameSelector(CustomerFieldNames.address))
-      .type(newCustomer.address)
+      .type(expectedCustomer.address)
       .clear();
     cy.contains(getFieldErrorMessage(CustomerFieldNames.address));
 
     cy.get(getNameSelector(CustomerFieldNames.company))
-      .type(newCustomer.company)
+      .type(expectedCustomer.company)
       .clear();
     cy.contains(getFieldErrorMessage(CustomerFieldNames.company));
 
@@ -95,22 +95,28 @@ describe("CustomerCreate", () => {
   it("creates a customer if all fields are valid", () => {
     useCustomersStore.setState({ customers: [], fetched: true }, true);
 
-    const newCustomer = newCustomerGenerator();
+    const expectedCustomer = newCustomerGenerator();
 
-    cy.get(getNameSelector(CustomerFieldNames.name)).type(newCustomer.name);
+    cy.get(getNameSelector(CustomerFieldNames.name)).type(
+      expectedCustomer.name
+    );
     cy.get(getNameSelector(CustomerFieldNames.username)).type(
-      newCustomer.username
+      expectedCustomer.username
     );
-    cy.get(getNameSelector(CustomerFieldNames.email)).type(newCustomer.email);
+    cy.get(getNameSelector(CustomerFieldNames.email)).type(
+      expectedCustomer.email
+    );
     cy.get(getNameSelector(CustomerFieldNames.website)).type(
-      newCustomer.website
+      expectedCustomer.website
     );
-    cy.get(getNameSelector(CustomerFieldNames.phone)).type(newCustomer.phone);
+    cy.get(getNameSelector(CustomerFieldNames.phone)).type(
+      expectedCustomer.phone
+    );
     cy.get(getNameSelector(CustomerFieldNames.address)).type(
-      newCustomer.address
+      expectedCustomer.address
     );
     cy.get(getNameSelector(CustomerFieldNames.company)).type(
-      newCustomer.company
+      expectedCustomer.company
     );
 
     cy.get(SELECTOR_BUTTON_SUBMIT).should("not.be.disabled");
@@ -122,7 +128,7 @@ describe("CustomerCreate", () => {
       .its("customers[0]")
       .then((actualCustomer: Customer) => {
         const { id, ...actualCustomerWithoutId } = actualCustomer;
-        expect(actualCustomerWithoutId).to.deep.equal(newCustomer);
+        expect(actualCustomerWithoutId).to.deep.equal(expectedCustomer);
       });
   });
 });

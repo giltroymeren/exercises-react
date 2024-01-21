@@ -29,46 +29,54 @@ describe("Smoke Test", () => {
       .find(getTestIdSelector("form-create"))
       .should("exist");
 
-    const newCustomer = newCustomerGenerator();
+    const expectedCustomer = newCustomerGenerator();
 
-    cy.get(getNameSelector(CustomerFieldNames.name)).type(newCustomer.name);
+    cy.get(getNameSelector(CustomerFieldNames.name)).type(
+      expectedCustomer.name
+    );
     cy.get(getNameSelector(CustomerFieldNames.username)).type(
-      newCustomer.username
+      expectedCustomer.username
     );
-    cy.get(getNameSelector(CustomerFieldNames.email)).type(newCustomer.email);
+    cy.get(getNameSelector(CustomerFieldNames.email)).type(
+      expectedCustomer.email
+    );
     cy.get(getNameSelector(CustomerFieldNames.website)).type(
-      newCustomer.website
+      expectedCustomer.website
     );
-    cy.get(getNameSelector(CustomerFieldNames.phone)).type(newCustomer.phone);
+    cy.get(getNameSelector(CustomerFieldNames.phone)).type(
+      expectedCustomer.phone
+    );
     cy.get(getNameSelector(CustomerFieldNames.address)).type(
-      newCustomer.address
+      expectedCustomer.address
     );
     cy.get(getNameSelector(CustomerFieldNames.company)).type(
-      newCustomer.company
+      expectedCustomer.company
     );
     cy.get(SELECTOR_BUTTON_SUBMIT).click();
 
     const selectorCustomerTable = "table-customers";
-    cy.get(getTestIdSelector(selectorCustomerTable)).contains(newCustomer.name);
     cy.get(getTestIdSelector(selectorCustomerTable)).contains(
-      newCustomer.email
+      expectedCustomer.name
     );
     cy.get(getTestIdSelector(selectorCustomerTable)).contains(
-      newCustomer.phone
+      expectedCustomer.email
     );
     cy.get(getTestIdSelector(selectorCustomerTable)).contains(
-      newCustomer.company
+      expectedCustomer.phone
+    );
+    cy.get(getTestIdSelector(selectorCustomerTable)).contains(
+      expectedCustomer.company
     );
 
     // Update
-    cy.contains("tr", newCustomer.name)
+    cy.contains("tr", expectedCustomer.name)
       .find(getTestIdSelector("button-update"))
       .click();
     cy.get(getTestIdSelector("drawer"))
       .find(getTestIdSelector("form-update"))
       .should("exist");
 
-    const updatedCustomer = { ...newCustomer, name: "Foo Bar" };
+    const updatedCustomer = { ...expectedCustomer, name: "Foo Bar" };
 
     cy.get(getNameSelector(CustomerFieldNames.name))
       .clear()
