@@ -1,21 +1,12 @@
 import { useCustomersStore } from "@/stores/customers";
 import { newCustomerGenerator } from "@/test/data-generators";
-
-const APP_URL = "http://localhost:4000/";
-
-const getTestIdSelector = (selector: string) => `[data-testid="${selector}"]`;
-const getNameSelector = (selector: string) => `[name="${selector}"]`;
-
-const SELECTOR_BUTTON_SUBMIT = 'button[type="submit"]';
-enum CustomerFieldNames {
-  name = "name",
-  username = "username",
-  email = "email",
-  website = "website",
-  phone = "phone",
-  address = "address",
-  company = "company",
-}
+import {
+  APP_URL,
+  CustomerFieldNames,
+  SELECTOR_BUTTON_SUBMIT,
+  getNameSelector,
+  getTestIdSelector,
+} from "cypress/utils";
 
 describe("Smoke Test", () => {
   beforeEach(() =>
