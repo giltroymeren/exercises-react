@@ -20,6 +20,7 @@ export const SimpleDrawer = NiceModal.create(
         onClose={onClose}
         footer={footer}
         width="50%"
+        data-testid="drawer"
       >
         {children}
       </Drawer>

@@ -19,6 +19,11 @@ const CustomerProfile = () => {
 
   const descriptions: DescriptionsProps["items"] = [
     {
+      key: "id",
+      label: "Customer ID",
+      children: <code>{customer.id}</code>,
+    },
+    {
       key: "username",
       label: "Username",
       children: <code>{customer.username}</code>,
@@ -51,7 +56,7 @@ const CustomerProfile = () => {
   ];
 
   return (
-    <>
+    <div data-testid="container-profile">
       <Row
         justify="space-around"
         align="middle"
@@ -74,15 +79,17 @@ const CustomerProfile = () => {
         column={1}
         size="small"
         bordered
-        data-test="container-profile"
+        data-testid="container-profile-details"
       />
 
       <Row justify="center" align="middle" className="container-body-footer">
         <Col>
-          <Button onClick={() => navigate("/")}>See all customers</Button>
+          <Button onClick={() => navigate("/")} data-testid="button-home">
+            See all customers
+          </Button>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

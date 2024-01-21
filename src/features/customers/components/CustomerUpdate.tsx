@@ -24,7 +24,7 @@ const CustomerUpdate = ({ id }: Props) => {
 
   return (
     <Button
-      data-test="button-edit"
+      data-testid="button-update"
       onClick={() => {
         show({
           title: "Update Customer",
@@ -36,6 +36,7 @@ const CustomerUpdate = ({ id }: Props) => {
               submitText="Update Customer"
               handleSubmit={handleSubmit}
               handleCancel={hide}
+              testId="form-update"
             />
           ),
         });

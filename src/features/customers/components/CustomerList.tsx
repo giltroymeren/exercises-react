@@ -37,7 +37,11 @@ const CustomersList = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (_, { id, name }) => <Link to={`/customer/${id}`}>{name}</Link>,
+      render: (_, { id, name }) => (
+        <Link to={`/customer/${id}`} data-testid="table-customers-name">
+          {name}
+        </Link>
+      ),
       sorter: (a, b) => a.name.localeCompare(b.name),
       sortDirections: ["ascend", "descend"],
     },
@@ -71,11 +75,12 @@ const CustomersList = () => {
   ];
 
   return (
-    <div className="section-list">
+    <div className="section-table" data-testid="section-table">
       <Row
         justify="space-around"
         align="middle"
         className="container-body-title"
+        data-testid="container-body-title"
       >
         <Col span={12}>
           <h1>Available Customers</h1>
@@ -89,8 +94,7 @@ const CustomersList = () => {
         dataSource={customers}
         columns={columns}
         rowKey={({ id }) => id}
-        data-test="table-customers"
-        rowClassName={({ id }) => `table-customers-row-${id}`}
+        data-testid="table-customers"
       />
     </div>
   );

@@ -17,7 +17,7 @@ const CustomerDelete = ({ customer }: Props) => {
   return (
     <Button
       danger
-      data-test="button-delete"
+      data-testid="button-delete"
       onClick={() =>
         NiceModal.show(SimpleModal, {
           title: "Delete Customer",

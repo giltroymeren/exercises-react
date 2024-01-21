@@ -8,6 +8,7 @@ type Props = {
   handleSubmit: () => void;
   handleCancel: () => void;
   id?: number;
+  testId?: string;
 };
 
 const CustomerForm = ({
@@ -16,6 +17,7 @@ const CustomerForm = ({
   handleSubmit,
   handleCancel,
   id,
+  testId,
 }: Props) => {
   const { getById } = useCustomersStore();
   const initialValues = id ? getById(id) : {};
@@ -39,7 +41,7 @@ const CustomerForm = ({
       form={formInstance}
       layout="vertical"
       autoComplete="off"
-      data-test="form-create"
+      data-testid={testId || "form-customer"}
       scrollToFirstError
       name="validateOnly"
       initialValues={initialValues}

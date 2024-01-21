@@ -4,6 +4,11 @@ import {
   customerGenerator,
   newCustomerGenerator,
 } from "@/test/data-generators";
+/**
+ * Prevents clash with cypress' own `expect`
+ * @link https://github.com/cypress-io/cypress/issues/22059#issuecomment-1662037410
+ */
+import { expect } from "@jest/globals";
 
 const initialStoreState = useCustomersStore.getState();
 

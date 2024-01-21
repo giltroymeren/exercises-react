@@ -24,7 +24,7 @@ const CustomerCreate = () => {
     <Button
       type="primary"
       icon={<PlusOutlined />}
-      data-test="button-create"
+      data-testid="button-create"
       onClick={() => {
         show({
           title: "Create Customer",
@@ -35,6 +35,7 @@ const CustomerCreate = () => {
               submitText="Create Customer"
               handleSubmit={handleSubmit}
               handleCancel={hide}
+              testId="form-create"
             />
           ),
         });
