@@ -86,8 +86,15 @@ const CustomerForm = ({
       </Form.Item>
       <Form.Item>
         <Space>
-          <Button onClick={handleCancel}>Cancel</Button>
-          <Button type="primary" htmlType="submit" disabled={!submittable}>
+          <Button onClick={handleCancel} data-testid="button-cancel">
+            Cancel
+          </Button>
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={!submittable}
+            data-testid="button-submit"
+          >
             {submitText}
           </Button>
         </Space>
