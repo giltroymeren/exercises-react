@@ -7,12 +7,18 @@ import { Customer } from "@/features";
 import SimpleModal from "@/components/Elements/SimpleModal/SimpleModal";
 
 type Props = {
-  customer: Customer;
+  id: number;
+  name: string;
 };
 
-const CustomerDelete = ({ customer }: Props) => {
+const CustomerDelete = ({ id, name }: Props) => {
   const navigate = useNavigate();
   const { remove } = useCustomersStore();
+
+  const handleSubmit = () => {
+    remove(id);
+    navigate("/");
+  };
 
   return (
     <Button
@@ -21,16 +27,16 @@ const CustomerDelete = ({ customer }: Props) => {
       onClick={() =>
         NiceModal.show(SimpleModal, {
           title: "Delete Customer",
-          handleSubmit: () => {
-            remove(customer.id);
-            navigate("/");
-          },
+          handleSubmit,
           submitText: "Delete",
-          submitProps: { type: "primary", danger: true },
+          submitProps: {
+            type: "primary",
+            danger: true,
+            "data-testid": "button-modal-delete",
+          },
           children: (
             <p>
-              Are you sure you want to delete Customer "
-              <strong>{customer.name}</strong>
+              Are you sure you want to delete Customer "<strong>{name}</strong>
               "? This action is irreversible.
             </p>
           ),

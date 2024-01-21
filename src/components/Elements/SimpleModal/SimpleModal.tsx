@@ -32,6 +32,7 @@ const SimpleModal = ({
       okText={submitText}
       okButtonProps={submitProps}
       data-testid="modal"
+      cancelButtonProps={{ "data-testid": "button-modal-cancel" }}
     >
       {children}
     </Modal>

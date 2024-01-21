@@ -68,7 +68,7 @@ const CustomersList = () => {
       render: (_, customer) => (
         <Space key={customer.id}>
           <CustomerUpdate id={customer.id} />
-          <CustomerDelete customer={customer} />
+          <CustomerDelete id={customer.id} name={customer.name} />
         </Space>
       ),
     },

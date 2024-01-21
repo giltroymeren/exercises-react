@@ -68,7 +68,7 @@ const CustomerProfile = () => {
         <Col span={6} offset={6} className="container-body-title-buttons">
           <Space>
             <CustomerUpdate id={customer.id} />
-            <CustomerDelete customer={customer} />
+            <CustomerDelete id={customer.id} name={customer.name} />
           </Space>
         </Col>
       </Row>
