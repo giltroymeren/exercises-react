@@ -1,13 +1,9 @@
-import React from "react";
-import CustomerDelete from "./CustomerDelete";
-import NiceModal from "@ebay/nice-modal-react";
+import { Customer } from "@/features";
 import { useCustomersStore } from "@/stores/customers";
 import { customerGenerator } from "@/test/data-generators";
-import { getTestIdSelector } from "../../../../cypress/support/utils";
-import { BrowserRouter } from "react-router-dom";
-import { Customer } from "../types";
+import { APP_URL, getTestIdSelector } from "cypress/support/utils";
 
-describe("CustomerDelete", () => {
+describe("Customer deletion", () => {
   const expectedCustomer = customerGenerator();
 
   beforeEach(() => {
@@ -16,16 +12,7 @@ describe("CustomerDelete", () => {
       true
     );
 
-    cy.mount(
-      <BrowserRouter>
-        <NiceModal.Provider>
-          <CustomerDelete
-            id={expectedCustomer.id}
-            name={expectedCustomer.name}
-          />
-        </NiceModal.Provider>
-      </BrowserRouter>
-    );
+    cy.visit(APP_URL);
 
     cy.get(getTestIdSelector("button-delete")).click();
     cy.get(getTestIdSelector("modal")).should("exist");
@@ -49,6 +36,20 @@ describe("CustomerDelete", () => {
         expect(actualCustomerWithoutId).to.deep.equal(
           expectedCustomerWithoutId
         );
+      });
+  });
+
+  it("deletes a customer successfully", () => {
+    cy.get(getTestIdSelector("button-modal-delete")).click();
+
+    cy.window()
+      .its("Storage")
+      .invoke("getState")
+      .its("customers")
+      .then((customers: Customer[]) => {
+        expect(
+          customers.every((customer) => customer.id !== expectedCustomer.id)
+        ).to.be.true;
       });
   });
 });

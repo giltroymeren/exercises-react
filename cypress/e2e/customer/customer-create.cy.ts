@@ -1,26 +1,22 @@
-import React from "react";
-import CustomerCreate from "./CustomerCreate";
-import NiceModal from "@ebay/nice-modal-react";
+import { Customer } from "@/features";
+import { useCustomersStore } from "@/stores/customers";
+import { newCustomerGenerator } from "@/test/data-generators";
 import {
+  APP_URL,
   CustomerFieldNames,
   SELECTOR_BUTTON_SUBMIT,
   getFieldErrorMessage,
   getNameSelector,
   getTestIdSelector,
-} from "../../../../cypress/support/utils";
-import { newCustomerGenerator } from "@/test/data-generators";
-import { useCustomersStore } from "@/stores/customers";
-import { Customer } from "../types";
+} from "cypress/support/utils";
 
 const TEXT_BUTTON_CREATE = "Create Customer";
 
-describe("CustomerCreate", () => {
+describe("Customer creation", () => {
   beforeEach(() => {
-    cy.mount(
-      <NiceModal.Provider>
-        <CustomerCreate />
-      </NiceModal.Provider>
-    );
+    useCustomersStore.setState({ customers: [], fetched: true }, true);
+
+    cy.visit(APP_URL);
 
     cy.get(getTestIdSelector("button-create")).click();
 
@@ -33,7 +29,7 @@ describe("CustomerCreate", () => {
     cy.get(getTestIdSelector("drawer")).should("not.exist");
   });
 
-  it("renders with complete fields a drawer", () => {
+  it("renders form drawer with complete fields", () => {
     cy.get(getNameSelector(CustomerFieldNames.name)).should("exist");
     cy.get(getNameSelector(CustomerFieldNames.username)).should("exist");
     cy.get(getNameSelector(CustomerFieldNames.email)).should("exist");
@@ -92,7 +88,7 @@ describe("CustomerCreate", () => {
     cy.get(getTestIdSelector("button-cancel")).click();
   });
 
-  it("creates a customer if all fields are valid", () => {
+  it("creates a customer if all fields are valid successfully", () => {
     useCustomersStore.setState({ customers: [], fetched: true }, true);
 
     const expectedCustomer = newCustomerGenerator();
