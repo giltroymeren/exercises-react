@@ -21,37 +21,57 @@ const CustomerProfile = () => {
     {
       key: "id",
       label: "Customer ID",
-      children: <code>{customer.id}</code>,
+      children: (
+        <span data-testid="customer-profile-id">
+          <code>{customer.id}</code>
+        </span>
+      ),
     },
     {
       key: "username",
       label: "Username",
-      children: <code>{customer.username}</code>,
+      children: (
+        <span data-testid="customer-profile-username">
+          <code>{customer.username}</code>
+        </span>
+      ),
     },
     {
       key: "email",
       label: "Email Address",
-      children: <code>{customer.email}</code>,
+      children: (
+        <span data-testid="customer-profile-email">
+          <code>{customer.email}</code>
+        </span>
+      ),
     },
     {
       key: "address",
       label: "Address",
-      children: customer.address,
+      children: (
+        <span data-testid="customer-profile-address">{customer.address}</span>
+      ),
     },
     {
       key: "phone",
       label: "Contact number",
-      children: customer.phone,
+      children: (
+        <span data-testid="customer-profile-phone">{customer.phone}</span>
+      ),
     },
     {
       key: "website",
       label: "Website",
-      children: customer.website,
+      children: (
+        <span data-testid="customer-profile-website">{customer.website}</span>
+      ),
     },
     {
       key: "company",
       label: "Company",
-      children: customer.company,
+      children: (
+        <span data-testid="customer-profile-company">{customer.company}</span>
+      ),
     },
   ];
 
@@ -63,7 +83,7 @@ const CustomerProfile = () => {
         className="container-body-title"
       >
         <Col span={12}>
-          <h1>{customer.name}</h1>
+          <h1 data-testid="customer-profile-name">{customer.name}</h1>
         </Col>
         <Col span={6} offset={6} className="container-body-title-buttons">
           <Space>
