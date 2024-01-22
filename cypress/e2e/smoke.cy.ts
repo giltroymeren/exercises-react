@@ -4,6 +4,7 @@ import {
   APP_URL,
   CustomerFieldNames,
   SELECTOR_BUTTON_SUBMIT,
+  getCustomerProfileSelector,
   getNameSelector,
   getTestIdSelector,
 } from "cypress/support/utils";
@@ -91,12 +92,11 @@ describe("Smoke Test", () => {
       .find(getTestIdSelector("table-customers-name"))
       .click();
 
-    const selectorCustomerProfile = "container-profile";
-    cy.get(getTestIdSelector(selectorCustomerProfile)).contains(
+    cy.get(getCustomerProfileSelector(CustomerFieldNames.name)).contains(
       updatedCustomer.name
     );
-    cy.get(getTestIdSelector(selectorCustomerProfile))
-      .find(getTestIdSelector(`${selectorCustomerProfile}-details`))
+    cy.get(getTestIdSelector("container-profile"))
+      .find(getTestIdSelector("container-profile-details"))
       .should("exist");
 
     cy.get(getTestIdSelector("button-home")).click();
