@@ -113,5 +113,10 @@ describe("Smoke Test", () => {
     cy.get(getTestIdSelector(selectorCustomerTable))
       .contains(updatedCustomer.name)
       .should("not.exist");
+
+    // 404 page
+    cy.visit(`${APP_URL}/invalid-page`);
+
+    cy.get(getTestIdSelector("container-notfound")).should("exist");
   });
 });
