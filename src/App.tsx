@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NiceModal from "@ebay/nice-modal-react";
 import Spinner from "./components/Elements/Spinner/Spinner";
 import MainLayout from "./components/Layout/MainLayout";
-import CustomersList from "./features/customers/components/CustomerList";
+import CustomerTable from "./features/customers/components/CustomerTable";
 import CustomerProfile from "./features/customers/components/CustomerProfile";
 import NotFound from "./features/not-found/NotFound";
 
@@ -17,7 +17,7 @@ const App = () => {
           <NiceModal.Provider>
             <Routes>
               <Route path="/" element={<MainLayout />}>
-                <Route index path="/" element={<CustomersList />} />
+                <Route index path="/" element={<CustomerTable />} />
                 <Route path="/customer/:id" element={<CustomerProfile />} />
                 <Route path="*" element={<NotFound />} />
               </Route>

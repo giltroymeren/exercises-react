@@ -6,7 +6,6 @@ import {
   CustomerFieldNames,
   SELECTOR_BUTTON_SUBMIT,
   getCustomerProfileSelector,
-  getFieldErrorMessage,
   getNameSelector,
   getTestIdSelector,
 } from "cypress/support/utils";

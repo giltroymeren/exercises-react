@@ -1,5 +1,13 @@
 import * as React from "react";
-import { Col, Row, Space, Table, TableProps } from "antd";
+import {
+  Col,
+  ConfigProvider,
+  Empty,
+  Row,
+  Space,
+  Table,
+  TableProps,
+} from "antd";
 import { useCustomers } from "../api/getCustomers";
 import { Customer } from "../types";
 import { useCustomersStore } from "../../../stores/customers";
@@ -10,7 +18,7 @@ import CustomerDelete from "./CustomerDelete";
 import { Link } from "react-router-dom";
 import NotFound from "@/features/not-found/NotFound";
 
-const CustomersList = () => {
+const CustomerTable = () => {
   const { customers, fetched, setAll } = useCustomersStore();
   const customersQuery = useCustomers();
 
@@ -90,14 +98,23 @@ const CustomersList = () => {
         </Col>
       </Row>
 
-      <Table<Customer>
-        dataSource={customers}
-        columns={columns}
-        rowKey={({ id }) => id}
-        data-testid="table-customers"
-      />
+      <ConfigProvider renderEmpty={() => <EmptyTable />}>
+        <Table<Customer>
+          dataSource={customers}
+          columns={columns}
+          rowKey={({ id }) => id}
+          data-testid="table-customers"
+        />
+      </ConfigProvider>
     </div>
   );
 };
 
-export default CustomersList;
+const EmptyTable = () => (
+  <Empty
+    data-testid="table-customers-empty"
+    description={<span>No customers available</span>}
+  />
+);
+
+export default CustomerTable;
