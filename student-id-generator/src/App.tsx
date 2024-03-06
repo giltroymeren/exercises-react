@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 
 import "./App.css";
 
@@ -29,64 +29,46 @@ function App() {
       <Formik<Student>
         initialValues={initialValues}
         validationSchema={StudentSchema}
-        onSubmit={(values) => onSubmit(values)}
+        validateOnMount
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            onSubmit(values);
+            setSubmitting(false);
+          }, 300);
+        }}
       >
-        {({ values, errors, touched, handleChange, handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
+        {({ isSubmitting, isValid }) => (
+          <Form>
             <div>
               <label htmlFor="firstName">First name</label>
-              <input
-                name="firstName"
-                placeholder="Your first name"
-                onChange={handleChange}
-                value={values.firstName}
-              />
-              {errors.firstName && touched.firstName && (
-                <div>{errors.firstName}</div>
-              )}
+              <Field name="firstName" />
+              <ErrorMessage name="firstName" component="div" />
             </div>
 
             <div>
               <label htmlFor="lastName">Last name</label>
-              <input
-                name="lastName"
-                placeholder="Your last name"
-                onChange={handleChange}
-                value={values.lastName}
-              />
-              {errors.lastName && touched.lastName && (
-                <div>{errors.lastName}</div>
-              )}
+              <Field name="lastName" />
+              <ErrorMessage name="lastName" component="div" />
             </div>
 
             <div>
               <label htmlFor="degree">Degree</label>
-              <input
-                name="degree"
-                placeholder="Your degree's title"
-                onChange={handleChange}
-                value={values.degree}
-              />
-              {errors.degree && touched.degree && <div>{errors.degree}</div>}
+              <Field name="degree" />
+              <ErrorMessage name="degree" component="div" />
             </div>
 
             <div>
               <label htmlFor="university">University</label>
-              <input
-                name="university"
-                placeholder="Your university's name"
-                onChange={handleChange}
-                value={values.university}
-              />
-              {errors.university && touched.university && (
-                <div>{errors.university}</div>
-              )}
+              <Field name="university" />
+              <ErrorMessage name="university" component="div" />
             </div>
 
             <div>
-              <button type="submit">Generate ID</button>
+              <button type="submit" disabled={isSubmitting || !isValid}>
+                Generate ID
+              </button>
             </div>
-          </form>
+          </Form>
         )}
       </Formik>
     </>
