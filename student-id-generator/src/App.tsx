@@ -1,3 +1,4 @@
+import React from "react";
 import * as yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 
@@ -20,9 +21,11 @@ const initialValues: Student = {
 };
 
 function App() {
-  const onSubmit = (newStudent: Student) => {
-    console.log(`New student: `, newStudent);
-  };
+  const [studentData, setStudentData] = React.useState<Student | undefined>(
+    undefined
+  );
+
+  const onSubmit = (newStudent: Student) => setStudentData(newStudent);
 
   return (
     <>
@@ -71,6 +74,34 @@ function App() {
           </Form>
         )}
       </Formik>
+
+      {studentData && (
+        <div>
+          <p>
+            <strong>University ID</strong>
+          </p>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Degree</th>
+                  <th>University</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {studentData.firstName} {studentData.lastName}
+                  </td>
+                  <td>{studentData.degree}</td>
+                  <td>{studentData.university}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </>
   );
 }
