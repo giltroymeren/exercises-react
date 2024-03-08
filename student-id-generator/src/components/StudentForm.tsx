@@ -4,11 +4,30 @@ import { Form, Formik } from "formik";
 import FormTextField from "./form/FormTextField";
 import FormField from "./form/FormField";
 
+const LENGTH_MINIMUM = 2;
+
+enum ValidationMessages {
+  Required = "This field is required.",
+  TwoCharacters = "This field must be at least two (2) characters.",
+}
+
 const StudentSchema = yup.object({
-  firstName: yup.string().required().min(2),
-  lastName: yup.string().required().min(2),
-  degree: yup.string().required().min(2),
-  university: yup.string().required().min(2),
+  firstName: yup
+    .string()
+    .required(ValidationMessages.Required)
+    .min(LENGTH_MINIMUM, ValidationMessages.TwoCharacters),
+  lastName: yup
+    .string()
+    .required(ValidationMessages.Required)
+    .min(LENGTH_MINIMUM, ValidationMessages.TwoCharacters),
+  degree: yup
+    .string()
+    .required(ValidationMessages.Required)
+    .min(LENGTH_MINIMUM, ValidationMessages.TwoCharacters),
+  university: yup
+    .string()
+    .required(ValidationMessages.Required)
+    .min(LENGTH_MINIMUM, ValidationMessages.TwoCharacters),
 });
 
 export interface Student extends yup.InferType<typeof StudentSchema> {}
