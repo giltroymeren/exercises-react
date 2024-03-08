@@ -1,8 +1,9 @@
 import React from "react";
 import * as yup from "yup";
-import { Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import FormErrorMessage from "./FormErrorMessage";
 import FormLabel from "./FormLabel";
+import FormTextField from "./FormTextField";
 
 const StudentSchema = yup.object({
   firstName: yup.string().required().min(2),
@@ -43,45 +44,25 @@ function StudentForm({ setStudentData }: Props) {
         <Form className="max-w-sm mx-auto">
           <div className="mb-5">
             <FormLabel forFieldName="firstName" labelName="First name" />
-            <Field
-              name="firstName"
-              className="border border-gray-300 text-gray-900 text-sm rounded-lg 
-                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
-            />
+            <FormTextField fieldName="firstName" />
             <FormErrorMessage fieldName="firstName" />
           </div>
 
           <div className="mb-5">
             <FormLabel forFieldName="lastName" labelName="Last name" />
-            <Field
-              name="lastName"
-              className="border border-gray-300 text-gray-900 text-sm rounded-lg 
-                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
-            />
+            <FormTextField fieldName="lastName" />
             <FormErrorMessage fieldName="lastName" />
           </div>
 
           <div className="mb-5">
             <FormLabel forFieldName="degree" labelName="Degree" />
-            <Field
-              name="degree"
-              className="border border-gray-300 text-gray-900 text-sm rounded-lg 
-                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
-            />
+            <FormTextField fieldName="degree" />
             <FormErrorMessage fieldName="degree" />
           </div>
 
           <div className="mb-5">
             <FormLabel forFieldName="university" labelName="University" />
-            <Field
-              name="university"
-              className="border border-gray-300 text-gray-900 text-sm rounded-lg 
-                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
-            />
+            <FormTextField fieldName="university" />
             <FormErrorMessage fieldName="university" />
           </div>
 
