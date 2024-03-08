@@ -1,9 +1,9 @@
 import React from "react";
 import * as yup from "yup";
 import { Form, Formik } from "formik";
-import FormErrorMessage from "./FormErrorMessage";
-import FormLabel from "./FormLabel";
-import FormTextField from "./FormTextField";
+import FormErrorMessage from "./form/FormErrorMessage";
+import FormLabel from "./form/FormLabel";
+import FormTextField from "./form/FormTextField";
 
 const StudentSchema = yup.object({
   firstName: yup.string().required().min(2),
