@@ -15,6 +15,7 @@ function App() {
           <ClickButton
             color="green"
             onClick={() => setCount((previous) => previous + 1)}
+            className="rounded-bl-md"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +55,7 @@ function App() {
           <ClickButton
             color="red"
             onClick={() => setCount((previous) => previous - 1)}
+            className="rounded-br-md"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
