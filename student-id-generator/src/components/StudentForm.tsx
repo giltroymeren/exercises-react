@@ -7,6 +7,7 @@ import FormField from "./form/FormField";
 const LENGTH_MINIMUM = 2;
 
 enum ValidationMessages {
+  EmailInvalid = "The email address is of invalid format.",
   Required = "This field is required.",
   TwoCharacters = "This field must be at least two (2) characters.",
 }
@@ -28,6 +29,10 @@ const StudentSchema = yup.object({
     .string()
     .required(ValidationMessages.Required)
     .min(LENGTH_MINIMUM, ValidationMessages.TwoCharacters),
+  email: yup
+    .string()
+    .email(ValidationMessages.EmailInvalid)
+    .required(ValidationMessages.Required),
 });
 
 export interface Student extends yup.InferType<typeof StudentSchema> {}
@@ -37,6 +42,7 @@ const initialValues: Student = {
   lastName: "",
   degree: "",
   university: "",
+  email: "",
 };
 
 type Props = {
@@ -51,10 +57,11 @@ function StudentForm({ setStudentData }: Props) {
       initialValues={initialValues}
       validationSchema={StudentSchema}
       validateOnMount
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={(values, { setSubmitting, resetForm }) => {
         setTimeout(() => {
           onSubmit(values);
           setSubmitting(false);
+          resetForm();
         }, 500);
       }}
     >
@@ -74,6 +81,10 @@ function StudentForm({ setStudentData }: Props) {
 
           <FormField fieldName="university" labelName="University">
             <FormTextField fieldName="university" />
+          </FormField>
+
+          <FormField fieldName="email" labelName="Email address">
+            <FormTextField fieldName="email" type="email" />
           </FormField>
 
           <div className="mb-5">
