@@ -1,9 +1,8 @@
 import React from "react";
 import * as yup from "yup";
 import { Form, Formik } from "formik";
-import FormErrorMessage from "./form/FormErrorMessage";
-import FormLabel from "./form/FormLabel";
 import FormTextField from "./form/FormTextField";
+import FormField from "./form/FormField";
 
 const StudentSchema = yup.object({
   firstName: yup.string().required().min(2),
@@ -42,29 +41,21 @@ function StudentForm({ setStudentData }: Props) {
     >
       {({ isSubmitting, isValid }) => (
         <Form className="max-w-sm mx-auto">
-          <div className="mb-5">
-            <FormLabel forFieldName="firstName" labelName="First name" />
+          <FormField fieldName="firstName" labelName="First name">
             <FormTextField fieldName="firstName" />
-            <FormErrorMessage fieldName="firstName" />
-          </div>
+          </FormField>
 
-          <div className="mb-5">
-            <FormLabel forFieldName="lastName" labelName="Last name" />
+          <FormField fieldName="lastName" labelName="Last name">
             <FormTextField fieldName="lastName" />
-            <FormErrorMessage fieldName="lastName" />
-          </div>
+          </FormField>
 
-          <div className="mb-5">
-            <FormLabel forFieldName="degree" labelName="Degree" />
+          <FormField fieldName="degree" labelName="Degree">
             <FormTextField fieldName="degree" />
-            <FormErrorMessage fieldName="degree" />
-          </div>
+          </FormField>
 
-          <div className="mb-5">
-            <FormLabel forFieldName="university" labelName="University" />
+          <FormField fieldName="university" labelName="University">
             <FormTextField fieldName="university" />
-            <FormErrorMessage fieldName="university" />
-          </div>
+          </FormField>
 
           <div className="mb-5">
             <button
