@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import ClickButton from "./components/ClickButton";
 
 function App() {
   const [count, setCount] = React.useState(0);
@@ -8,14 +9,11 @@ function App() {
     <div className="flex justify-center">
       <div className="w-1/3 flex flex-col">
         <div className="text-center px-8 py-20">
-          <span className="text-9xl">{count}</span>
+          <span className="text-9xl text-slate-600 font-mono">{count}</span>
         </div>
         <div className="flex">
-          <button
-            className="basis-1/3 flex justify-center
-              text-white bg-green-700 hover:bg-green-800 focus:outline-none
-              active:bg-green-900 font-medium rounded-lg text-sm w-full
-              sm:w-auto px-5 py-2.5 text-center rounded-none"
+          <ClickButton
+            color="green"
             onClick={() => setCount((previous) => previous + 1)}
           >
             <svg
@@ -32,14 +30,9 @@ function App() {
                 d="M12 4.5v15m7.5-7.5h-15"
               />
             </svg>
-          </button>
-          <button
-            className="basis-1/3 flex justify-center
-              text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none
-              active:bg-yellow-600 font-medium rounded-lg text-sm w-full
-              sm:w-auto px-5 py-2.5 text-center rounded-none"
-            onClick={() => setCount(0)}
-          >
+          </ClickButton>
+
+          <ClickButton color="yellow" onClick={() => setCount(0)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -56,12 +49,10 @@ function App() {
                 3.182m0-4.991v4.99"
               />
             </svg>
-          </button>
-          <button
-            className="basis-1/3 flex justify-center
-              text-white bg-red-700 hover:bg-red-800 focus:outline-none
-              active:bg-red-900 font-medium rounded-lg text-sm w-full
-              sm:w-auto px-5 py-2.5 text-center rounded-none"
+          </ClickButton>
+
+          <ClickButton
+            color="red"
             onClick={() => setCount((previous) => previous - 1)}
           >
             <svg
@@ -74,7 +65,7 @@ function App() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
             </svg>
-          </button>
+          </ClickButton>
         </div>
       </div>
     </div>
