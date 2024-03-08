@@ -6,8 +6,8 @@ function App() {
   const [count, setCount] = React.useState(0);
 
   return (
-    <div className="flex justify-center">
-      <div className="w-1/3 flex flex-col">
+    <div className="flex flex-wrap justify-center h-screen">
+      <div className="w-1/3 flex flex-col shadow-xl rounded-md m-auto">
         <div className="text-center px-8 py-20">
           <span className="text-9xl text-slate-600 font-mono">{count}</span>
         </div>
