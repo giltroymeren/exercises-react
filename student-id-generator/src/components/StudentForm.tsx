@@ -2,6 +2,7 @@ import React from "react";
 import * as yup from "yup";
 import { Field, Form, Formik } from "formik";
 import FormErrorMessage from "./FormErrorMessage";
+import FormLabel from "./FormLabel";
 
 const StudentSchema = yup.object({
   firstName: yup.string().required().min(2),
@@ -41,12 +42,7 @@ function StudentForm({ setStudentData }: Props) {
       {({ isSubmitting, isValid }) => (
         <Form className="max-w-sm mx-auto">
           <div className="mb-5">
-            <label
-              htmlFor="firstName"
-              className="block mb-2 text-sm font-medium text-gray-900"
-            >
-              First name
-            </label>
+            <FormLabel forFieldName="firstName" labelName="First name" />
             <Field
               name="firstName"
               className="border border-gray-300 text-gray-900 text-sm rounded-lg 
@@ -57,12 +53,7 @@ function StudentForm({ setStudentData }: Props) {
           </div>
 
           <div className="mb-5">
-            <label
-              htmlFor="lastName"
-              className="block mb-2 text-sm font-medium text-gray-900"
-            >
-              Last name
-            </label>
+            <FormLabel forFieldName="lastName" labelName="Last name" />
             <Field
               name="lastName"
               className="border border-gray-300 text-gray-900 text-sm rounded-lg 
@@ -73,12 +64,7 @@ function StudentForm({ setStudentData }: Props) {
           </div>
 
           <div className="mb-5">
-            <label
-              htmlFor="degree"
-              className="block mb-2 text-sm font-medium text-gray-900"
-            >
-              Degree
-            </label>
+            <FormLabel forFieldName="degree" labelName="Degree" />
             <Field
               name="degree"
               className="border border-gray-300 text-gray-900 text-sm rounded-lg 
@@ -89,12 +75,7 @@ function StudentForm({ setStudentData }: Props) {
           </div>
 
           <div className="mb-5">
-            <label
-              htmlFor="university"
-              className="block mb-2 text-sm font-medium text-gray-900"
-            >
-              University
-            </label>
+            <FormLabel forFieldName="university" labelName="University" />
             <Field
               name="university"
               className="border border-gray-300 text-gray-900 text-sm rounded-lg 
