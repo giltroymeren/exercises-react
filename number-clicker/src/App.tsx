@@ -3,7 +3,19 @@ import "./App.css";
 import ClickButton from "./components/ClickButton";
 
 function App() {
-  const [count, setCount] = React.useState(0);
+  const [baseCount, setBaseCount] = React.useState(0);
+  const [count, setCount] = React.useState(baseCount);
+
+  const onReset = () => {
+    setBaseCount(0);
+    setCount(0);
+  };
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setCount(baseCount);
+    setBaseCount(0);
+  };
 
   return (
     <div className="flex flex-wrap justify-center h-screen">
@@ -11,6 +23,39 @@ function App() {
         <div className="text-center px-8 py-20">
           <span className="text-9xl text-slate-600 font-mono">{count}</span>
         </div>
+
+        <div>
+          <label
+            htmlFor="baseCount"
+            className="mb-2 text-sm font-medium text-gray-900 sr-only"
+          >
+            Base count
+          </label>
+          <div className="relative">
+            <form onSubmit={onSubmit}>
+              <input
+                type="number"
+                step={1}
+                inputMode="numeric"
+                pattern="\d*"
+                id="baseCount"
+                className="block w-full p-4 ps-10 text-gray-900 border border-gray-300
+                rounded-none bg-gray-50"
+                placeholder="Base count"
+                value={baseCount}
+                onChange={(e) => setBaseCount(Number(e.target.value))}
+              />
+              <button
+                type="submit"
+                className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800
+                font-medium rounded-none text-sm px-4 py-2 rounded-md"
+              >
+                Set
+              </button>
+            </form>
+          </div>
+        </div>
+
         <div className="flex">
           <ClickButton
             color="green"
@@ -33,7 +78,7 @@ function App() {
             </svg>
           </ClickButton>
 
-          <ClickButton color="yellow" onClick={() => setCount(0)}>
+          <ClickButton color="yellow" onClick={onReset}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
