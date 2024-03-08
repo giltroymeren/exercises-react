@@ -1,6 +1,7 @@
 import React from "react";
 import * as yup from "yup";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
+import FormErrorMessage from "./FormErrorMessage";
 
 const StudentSchema = yup.object({
   firstName: yup.string().required().min(2),
@@ -52,11 +53,7 @@ function StudentForm({ setStudentData }: Props) {
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               required
             />
-            <ErrorMessage
-              name="firstName"
-              component="div"
-              className="text-sm text-red-700"
-            />
+            <FormErrorMessage fieldName="firstName" />
           </div>
 
           <div className="mb-5">
@@ -72,11 +69,7 @@ function StudentForm({ setStudentData }: Props) {
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               required
             />
-            <ErrorMessage
-              name="lastName"
-              component="div"
-              className="text-sm text-red-700"
-            />
+            <FormErrorMessage fieldName="lastName" />
           </div>
 
           <div className="mb-5">
@@ -92,11 +85,7 @@ function StudentForm({ setStudentData }: Props) {
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               required
             />
-            <ErrorMessage
-              name="degree"
-              component="div"
-              className="text-sm text-red-700"
-            />
+            <FormErrorMessage fieldName="degree" />
           </div>
 
           <div className="mb-5">
@@ -112,11 +101,7 @@ function StudentForm({ setStudentData }: Props) {
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               required
             />
-            <ErrorMessage
-              name="university"
-              component="div"
-              className="text-sm text-red-700"
-            />
+            <FormErrorMessage fieldName="university" />
           </div>
 
           <div className="mb-5">
